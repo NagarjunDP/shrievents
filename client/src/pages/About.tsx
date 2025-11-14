@@ -251,7 +251,7 @@ export default function About() {
             >
               <h2 className="text-4xl font-bold text-slate-900 mb-6">Our Story</h2>
               <p className="text-lg text-slate-700 mb-4 leading-relaxed">
-                Welcome to <strong>Shri Decorations and Event Management</strong> — your trusted partner in creating beautiful, joyful celebrations.
+                Welcome to <strong>Shri Decorations and Event Management Led By Shrinivas Kshatriya</strong> — your trusted partner in creating beautiful, joyful celebrations.
               </p>
               <p className="text-lg text-slate-700 mb-4 leading-relaxed">
                 We specialize in <strong>balloon decorations</strong> and full event management. Whether it's a birthday party, wedding, baby shower, or corporate event, we bring creativity and care to every detail.
