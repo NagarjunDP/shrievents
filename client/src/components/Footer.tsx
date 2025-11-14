@@ -591,7 +591,7 @@ export default function Footer() {
 
               <motion.li className="flex items-center justify-center md:justify-start gap-2" whileHover={{ x: 4 }}>
                 <Phone size={16} className="text-yellow-400" />
-                <a href="tel:+919739120735" className="hover:text-yellow-400">+91 9739 120735</a>
+                <a href="tel:+919739120735" className="hover:text-yellow-400">+91 97392 20735</a>
               </motion.li>
 
               <motion.li className="flex items-center justify-center md:justify-start gap-2" whileHover={{ x: 4 }}>
