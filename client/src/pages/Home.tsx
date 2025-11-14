@@ -1873,6 +1873,17 @@ import {
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+interface Highlight {
+  // whatever you need
+}
+
+interface Service {
+  img: string;
+  title: string;
+  subtitle: string;
+  highlights: string[];
+  rating: number;
+}
 // === CONFIG ===
 const PHONE_NUMBER = '+91 98765 43210';
 const BUSINESS_NAME = "Shri Events";
@@ -2090,74 +2101,66 @@ function Hero() {
 //     </section>
 //   );
 // }
-function ServiceFeature({ service, reverse }) {
+export function ServiceFeature({ service, reverse }: { service: Service; reverse?: boolean }) {
   return (
     <section
       className={`
         max-w-6xl mx-auto 
-        px-4 md:px-6 
-        py-10 md:py-16
+        px-4 py-8 md:py-14
         flex flex-col 
         ${reverse ? "md:flex-row-reverse" : "md:flex-row"}
         items-center 
-        gap-10 md:gap-14
+        gap-6 md:gap-12
+        text-center                 /* ← center everything on mobile */
       `}
     >
-      {/* Image */}
+      {/* ─── IMAGE ─── */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="w-full md:w-1/2 group"
+        className="w-full md:w-1/2"
       >
         <motion.img
           src={service.img}
           alt={service.title}
           whileHover={{ scale: 1.025 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="
-            rounded-2xl 
-            w-full 
-            object-cover 
-            shadow-xl
-            transition-all
-          "
-          style={{
-            maxHeight: "340px",
-            borderRadius: "20px",
-          }}
+          className="rounded-2xl w-full object-cover shadow-xl"
+          style={{ maxHeight: "340px" }}
         />
       </motion.div>
 
-      {/* Text */}
+      {/* ─── TEXT ─── */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.75, delay: 0.05 }}
-        className="flex-1 w-full"
+        className="w-full md:w-1/2 flex flex-col items-center md:items-start"
       >
-        <h2 className="text-[28px] md:text-[36px] font-semibold text-black mb-2 leading-tight tracking-tight">
+        {/* Title */}
+        <h2 className="text-2xl md:text-4xl font-semibold text-black mb-2 leading-tight">
           {service.title}
         </h2>
 
-        <p className="text-[15px] md:text-[17px] text-neutral-600 mb-6 md:mb-7 leading-relaxed max-w-lg">
+        {/* Subtitle */}
+        <p className="text-sm md:text-base text-neutral-600 mb-5 md:mb-6 leading-relaxed max-w-md mx-auto md:mx-0">
           {service.subtitle}
         </p>
 
-        {/* Feature Pills */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8">
+        {/* ─── FEATURE PILLS (compact) ─── */}
+        <div className="grid grid-cols-2 gap-2 w-full max-w-md mx-auto md:mx-0">
           {service.highlights.map((h, i) => (
             <div
               key={i}
               className="
-                text-sm md:text-[15px] text-black/80
-                bg-white border border-black/[0.08]
-                px-4 py-2.5 rounded-xl
-                shadow-sm 
-                hover:shadow-md 
-                transition-all
+                text-xs md:text-sm text-black/85
+                bg-white border border-black/8
+                px-2.5 py-1.5 rounded-lg
+                shadow-sm hover:shadow transition-shadow
+                flex items-center justify-center
               "
             >
               {h}
@@ -2165,16 +2168,13 @@ function ServiceFeature({ service, reverse }) {
           ))}
         </div>
 
-        {/* Rating */}
-        <div className="flex items-center gap-1 mb-1">
+        {/* ─── RATING ─── */}
+        <div className="flex items-center justify-center md:justify-start gap-1 mt-4">
           {Array.from({ length: service.rating }).map((_, i) => (
-            <Star
-              key={i}
-              className="w-5 h-5 fill-yellow-400 text-yellow-400"
-            />
+            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
           ))}
         </div>
-        <p className="text-sm text-neutral-500">
+        <p className="text-xs text-neutral-500 mt-1">
           Rated {service.rating}.0 / 5 by clients
         </p>
       </motion.div>
