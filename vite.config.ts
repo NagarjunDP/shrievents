@@ -60,9 +60,9 @@ export default defineConfig({
 
   // ❗ Output MUST be "dist" – not "dist/public"
   build: {
-    outDir: "../../dist",
-    emptyOutDir: true,
-  },
+  outDir: path.resolve(import.meta.dirname, "dist"),
+  emptyOutDir: true,
+},
 
   resolve: {
     alias: {
