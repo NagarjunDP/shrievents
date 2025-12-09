@@ -113,15 +113,15 @@
 //   },
 // });
 
-import { defineConfig } from "vite";
+ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-  root: "client",
+  root: "client",           // source folder
   plugins: [react(), tailwindcss()],
-  base: "./",
+  base: "./",               // relative paths for production
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client/src"),
@@ -130,12 +130,8 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: "dist", // inside client
+    outDir: "dist",         // inside client
     emptyOutDir: true,
-  },
-  server: {
-    port: 3000,
-    host: true,
   },
 });
 
