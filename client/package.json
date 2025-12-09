@@ -10,7 +10,7 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
-    // add other runtime dependencies here
+    
   },
   "devDependencies": {
     "vite": "^5.2.0",
