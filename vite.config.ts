@@ -113,6 +113,28 @@
 //   },
 // });
 
+// import { defineConfig } from "vite";
+// import react from "@vitejs/plugin-react";
+// import tailwindcss from "@tailwindcss/vite";
+// import path from "path";
+
+// export default defineConfig({
+//   root: "client",
+//   plugins: [react(), tailwindcss()],
+//   base: "./",
+//   resolve: {
+//     alias: {
+//       "@": path.resolve(__dirname, "client/src"),
+//       "@shared": path.resolve(__dirname, "shared"),
+//       "@assets": path.resolve(__dirname, "attached_assets"),
+//     },
+//   },
+//   build: {
+//     outDir: "../dist",   // output **outside client** to match Vercel expectation
+//     emptyOutDir: true,
+//   },
+// });
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
@@ -120,8 +142,8 @@ import path from "path";
 
 export default defineConfig({
   root: "client",
+  base: "/",   // important: assets load correctly on all routes
   plugins: [react(), tailwindcss()],
-  base: "./",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client/src"),
@@ -130,10 +152,9 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: "../dist",   // output **outside client** to match Vercel expectation
+    outDir: "../dist",  // output outside client folder for Vercel
     emptyOutDir: true,
   },
 });
-
 
 
