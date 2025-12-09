@@ -1869,12 +1869,85 @@ import {
   ChevronRight,
   Star,
   Instagram,
+  Users,
+  Gem,
+  Ribbon,
+  Cake,
+  Baby,
+  Flower2,
+  Heart,
 } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+interface Highlight {
+  // whatever you need
+}
+
+interface Service {
+  img: string;
+  title: string;
+  subtitle: string;
+  highlights: string[];
+  rating: number;
+}
+
+const services = [
+  {
+    id: 'wedding',
+    title: 'Wedding Decoration',
+    icon: 'Rings',
+    description: 'End-to-end coordination for your dream day',
+    image: '/WhatsApp Image 2025-12-08 at 22.55.11 (1).jpeg',
+  },
+  {
+    id: 'naming',
+    title: 'Naming Ceremony',
+    icon: 'Baby',
+    description: 'Celebrate new beginnings with elegance',
+    image: '/oie_9113542DF0IVhHx.jpg',
+  },
+  {
+    id: 'baby-shower',
+    title: 'Baby Shower',
+    icon: 'Ribbon',
+    description: 'Celebrate motherhood in style',
+    image: '/WhatsApp Image 2025-12-08 at 23.02.28.jpeg',
+  },
+  {
+    id: 'birthday',
+    title: 'Birthday Party',
+    icon: 'Balloon',
+    description: 'Make every birthday magical',
+    image: '/event16.webp',
+  },
+  {
+    id: 'kids-activities',
+    title: 'Kids Activities',
+    icon: 'Paintbrush',
+    description: 'Fun and entertainment for all ages',
+    image: '/event14.webp',
+  },
+  {
+    id: 'other-events',
+    title: 'Other Events',
+    icon: 'Sparkles',
+    description: 'Corporate, Festivals & More',
+    image: '/wMrfOfKI8tCt.jpg',
+  },
+];
+
+// Icon mapping (since you're using emoji strings in Services)
+const iconMap: Record<string, any> = {
+  'Rings': Heart,
+  'Baby': Baby,
+  'Ribbon': Ribbon,
+  'Balloon': Cake,
+  'Paintbrush': Palette,
+  'Sparkles': Sparkles,
+};
 // === CONFIG ===
-const PHONE_NUMBER = '+91 98765 43210';
+const PHONE_NUMBER = '+91 97392 20735';
 const BUSINESS_NAME = "Shri Events";
 
 // Example service data -- keep for animated service sections
@@ -2022,10 +2095,10 @@ function Hero() {
           className="flex flex-col sm:flex-row gap-4"
         >
           <a
-            href="gallery"
+            href="services"
             className="px-8 py-4 bg-gradient-to-r from-pink-600 to-purple-700 text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all"
           >
-            Explore Gallery
+            Explore Services
           </a>
           <a
             href={`tel:${PHONE_NUMBER}`}
@@ -2045,7 +2118,70 @@ function Hero() {
     </section>
   );
 }
+{/* ========== PROFESSIONAL SERVICES GRID SECTION ========== */}
+<section className="py-24 md:py-32 bg-gradient-to-b from-white via-pink-50/50 to-purple-50/30">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    {/* Heading */}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="mb-16"
+    >
+      <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+        Our <span className="bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">Services</span>
+      </h2>
+      <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        From intimate gatherings to grand celebrations — we make every moment unforgettable
+      </p>
+    </motion.div>
 
+    {/* Services Grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      {[
+        { icon: Heart, title: "Wedding Decoration", desc: "Dream mandaps, floral artistry & lighting", color: "from-pink-500 to-rose-600" },
+        { icon: Flower2, title: "Haldi & Mehendi", desc: "Vibrant themes with fresh flowers & props", color: "from-amber-500 to-orange-500" },
+        { icon: Baby, title: "Naming Ceremony", desc: "Elegant baby welcomes & joyful decor", color: "from-blue-500 to-cyan-500" },
+        { icon: Cake, title: "Birthday Parties", desc: "Themed balloons, backdrops & fun setups", color: "from-purple-500 to-pink-600" },
+        { icon: Gem, title: "Engagement & Anniversaries", desc: "Romantic ring ceremonies & love-filled decor", color: "from-emerald-500 to-teal-600" },
+        { icon: Users, title: "Corporate & Festivals", desc: "Housewarming, Ganesh Chaturthi & more", color: "from-indigo-500 to-purple-600" },
+      ].map((service, i) => (
+        <motion.a
+          key={i}
+          href="/services"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1, duration: 0.7 }}
+          whileHover={{ y: -12 }}
+          className="group block"
+        >
+          <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 h-full p-10 flex flex-col items-center text-center">
+            <div className={`p-5 rounded-full bg-gradient-to-br ${service.color} text-white mb-6 group-hover:scale-110 transition-transform`}>
+              <service.icon className="w-12 h-12" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
+            <p className="text-gray-600 leading-relaxed flex-1">{service.desc}</p>
+            <div className="mt-6 text-pink-600 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+              Explore <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+            </div>
+          </div>
+        </motion.a>
+      ))}
+    </div>
+
+    {/* View All Button */}
+    <motion.a
+      href="/services"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className="inline-block mt-16 px-12 py-5 bg-gradient-to-r from-pink-600 to-purple-700 text-white font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transition-all"
+    >
+      View All Services →
+    </motion.a>
+  </div>
+</section>
 // ==== Services Section (Scroll animations, full page sections) ====
 // function ServiceFeature({ service }) {
 //   const IconComponent = service.icon;
@@ -2090,74 +2226,66 @@ function Hero() {
 //     </section>
 //   );
 // }
-function ServiceFeature({ service, reverse }) {
+export function ServiceFeature({ service, reverse }: { service: Service; reverse?: boolean }) {
   return (
     <section
       className={`
         max-w-6xl mx-auto 
-        px-4 md:px-6 
-        py-10 md:py-16
+        px-4 py-8 md:py-14
         flex flex-col 
         ${reverse ? "md:flex-row-reverse" : "md:flex-row"}
         items-center 
-        gap-10 md:gap-14
+        gap-6 md:gap-12
+        text-center                 /* ← center everything on mobile */
       `}
     >
-      {/* Image */}
+      {/* ─── IMAGE ─── */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="w-full md:w-1/2 group"
+        className="w-full md:w-1/2"
       >
         <motion.img
           src={service.img}
           alt={service.title}
           whileHover={{ scale: 1.025 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="
-            rounded-2xl 
-            w-full 
-            object-cover 
-            shadow-xl
-            transition-all
-          "
-          style={{
-            maxHeight: "340px",
-            borderRadius: "20px",
-          }}
+          className="rounded-2xl w-full object-cover shadow-xl"
+          style={{ maxHeight: "340px" }}
         />
       </motion.div>
 
-      {/* Text */}
+      {/* ─── TEXT ─── */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.75, delay: 0.05 }}
-        className="flex-1 w-full"
+        className="w-full md:w-1/2 flex flex-col items-center md:items-start"
       >
-        <h2 className="text-[28px] md:text-[36px] font-semibold text-black mb-2 leading-tight tracking-tight">
+        {/* Title */}
+        <h2 className="text-2xl md:text-4xl font-semibold text-black mb-2 leading-tight">
           {service.title}
         </h2>
 
-        <p className="text-[15px] md:text-[17px] text-neutral-600 mb-6 md:mb-7 leading-relaxed max-w-lg">
+        {/* Subtitle */}
+        <p className="text-sm md:text-base text-neutral-600 mb-5 md:mb-6 leading-relaxed max-w-md mx-auto md:mx-0">
           {service.subtitle}
         </p>
 
-        {/* Feature Pills */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8">
+        {/* ─── FEATURE PILLS (compact) ─── */}
+        <div className="grid grid-cols-2 gap-2 w-full max-w-md mx-auto md:mx-0">
           {service.highlights.map((h, i) => (
             <div
               key={i}
               className="
-                text-sm md:text-[15px] text-black/80
-                bg-white border border-black/[0.08]
-                px-4 py-2.5 rounded-xl
-                shadow-sm 
-                hover:shadow-md 
-                transition-all
+                text-xs md:text-sm text-black/85
+                bg-white border border-black/8
+                px-2.5 py-1.5 rounded-lg
+                shadow-sm hover:shadow transition-shadow
+                flex items-center justify-center
               "
             >
               {h}
@@ -2165,16 +2293,13 @@ function ServiceFeature({ service, reverse }) {
           ))}
         </div>
 
-        {/* Rating */}
-        <div className="flex items-center gap-1 mb-1">
+        {/* ─── RATING ─── */}
+        <div className="flex items-center justify-center md:justify-start gap-1 mt-4">
           {Array.from({ length: service.rating }).map((_, i) => (
-            <Star
-              key={i}
-              className="w-5 h-5 fill-yellow-400 text-yellow-400"
-            />
+            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
           ))}
         </div>
-        <p className="text-sm text-neutral-500">
+        <p className="text-xs text-neutral-500 mt-1">
           Rated {service.rating}.0 / 5 by clients
         </p>
       </motion.div>
@@ -2461,10 +2586,116 @@ export default function Home() {
   return (
     <>
       <Hero />
+
+
+{/* ========== PERFECT HORIZONTAL SERVICES CAROUSEL (NO EDGE CUT-OFF) ========== */}
+{/* ========== FINAL: CLEAN, SMALL, PREMIUM SCROLLING SERVICES (USING YOUR REAL DATA) ========== */}
+<section className="py-20 md:py-28 bg-white">
+  <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    {/* Heading */}
+    <div className="text-center mb-14">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        className="text-4xl md:text-5xl font-bold text-gray-900"
+      >
+        Our <span className="bg-gradient-to-r from-pink-600 to-purple-700 bg-clip-text text-transparent">Services</span>
+      </motion.h2>
+      <p className="mt-4 text-lg text-gray-600">Tap any card to explore packages</p>
+    </div>
+
+    {/* Scrolling Container */}
+    <div className="relative overflow-hidden">
+      {/* Fade edges */}
+      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10" />
+      <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10" />
+
+      <motion.div
+        className="flex gap-6"
+        animate={{ x: [0, -100 + "%"] }}
+        transition={{
+          duration: 40,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+        }}
+        style={{ animationPlayState: "running" }}
+        onMouseEnter={(e) => e.currentTarget.style.animationPlayState = "paused"}
+        onMouseLeave={(e) => e.currentTarget.style.animationPlayState = "running"}
+        onTouchStart={(e) => e.currentTarget.style.animationPlayState = "paused"}
+        onTouchEnd={(e) => e.currentTarget.style.animationPlayState = "running"}
+      >
+        {[...services, ...services].map((service, i) => {
+          const Icon = iconMap[service.icon] || Sparkles;
+          return (
+            <motion.a
+              key={`${service.id}-${i}`}
+              href="/services"
+              className="
+                group flex-shrink-0 
+                w-[78vw] 
+                sm:w-[65vw] 
+                md:w-[40vw] 
+                lg:w-[30vw] 
+                max-w-xs
+              "
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden">
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  
+                  {/* Icon + Title */}
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <Icon className="w-8 h-8 mb-1.5" />
+                    <h3 className="text-lg font-bold drop-shadow-lg leading-tight">
+                      {service.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-5">
+                  <p className="text-gray-700 text-xs leading-relaxed mb-3 line-clamp-2">
+                    {service.description}
+                  </p>
+                  <div className="flex items-center text-pink-600 font-semibold text-sm">
+                    View Packages
+                    <ChevronRight className="w-4.5 h-4.5 ml-1 group-hover:translate-x-1.5 transition-transform duration-300" />
+                  </div>
+                </div>
+              </div>
+            </motion.a>
+          );
+        })}
+      </motion.div>
+    </div>
+
+    {/* CTA Button */}
+    <div className="text-center mt-14">
+      <motion.a
+        href="/services"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="inline-block px-10 py-4 bg-gradient-to-r from-pink-600 to-purple-700 text-white font-bold rounded-full shadow-xl hover:shadow-2xl transition-all"
+      >
+        Explore All Services
+      </motion.a>
+    </div>
+  </div>
+</section>
       {/* Animate services, normal scroll sections - no container scroll */}
       {SERVICES.map((service) => (
         <ServiceFeature key={service.title} service={service} />
       ))}
+      
       <Testimonials />
       <Stats />
       <CTA />
