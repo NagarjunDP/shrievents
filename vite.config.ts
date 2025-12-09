@@ -91,25 +91,57 @@
 //   },
 // });
 
-import { defineConfig } from "vite";
+// import { defineConfig } from "vite";
+// import react from "@vitejs/plugin-react";
+// import path from "path";
+
+// export default defineConfig({
+//   root: "client",
+//   plugins: [react()],
+//   resolve: {
+//     alias: {
+//       "@": path.resolve(__dirname, "client/src"), // <-- this allows @/ imports
+//     },
+//   },
+//   build: {
+//     outDir: "../dist",
+//     emptyOutDir: true, // cleans the output folder before build
+//   },
+//   server: {
+//     host: true,
+//     port: 5173,
+//   },
+// });
+
+import manus from "vite-plugin-manus-runtime";
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { defineConfig } from "vite";
+//import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
+
+const plugins = [react(), tailwindcss()];
 
 export default defineConfig({
-  root: "client",
-  plugins: [react()],
+  plugins,
+  root: path.resolve(import.meta.dirname, "client"),
+
+  // ❗ Output MUST be "dist" – not "dist/public"
+  build: {
+    outDir: "../../dist",
+    emptyOutDir: true,
+  },
+
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client/src"), // <-- this allows @/ imports
+      "@": path.resolve(import.meta.dirname, "client", "src"),
+      "@shared": path.resolve(import.meta.dirname, "shared"),
+      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  build: {
-    outDir: "../dist",
-    emptyOutDir: true, // cleans the output folder before build
-  },
+
   server: {
+    port: 3000,
     host: true,
-    port: 5173,
   },
 });
-
