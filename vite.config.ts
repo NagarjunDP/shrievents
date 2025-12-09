@@ -41,35 +41,46 @@
 // // vite.config.ts
 // // vite.config.ts// vite.config.ts
 
-import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
-import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
-import { defineConfig } from "vite";
-import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
+// // import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
+// import manus from "vite-plugin-manus-runtime";
+// import tailwindcss from "@tailwindcss/vite";
+// import react from "@vitejs/plugin-react";
+// import path from "path";
+// import { defineConfig } from "vite";
+// import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime()];
+// const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime()];
+
+// export default defineConfig({
+//   plugins,
+//   root: path.resolve(import.meta.dirname, "client"),
+
+//   // ❗ Output MUST be "dist" – not "dist/public"
+//   build: {
+//     outDir: "../../dist",
+//     emptyOutDir: true,
+//   },
+
+//   resolve: {
+//     alias: {
+//       "@": path.resolve(import.meta.dirname, "client", "src"),
+//       "@shared": path.resolve(import.meta.dirname, "shared"),
+//       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+//     },
+//   },
+
+//   server: {
+//     port: 3000,
+//     host: true,
+//   },
+// });
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins,
-  root: path.resolve(import.meta.dirname, "client"),
-
-  // ❗ Output MUST be "dist" – not "dist/public"
-  build: {
-    outDir: "../../dist",
-    emptyOutDir: true,
-  },
-
-  resolve: {
-    alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
-    },
-  },
-
+  plugins: [react()],
   server: {
-    port: 3000,
     host: true,
-  },
+    port: 5173,
+  }
 });
