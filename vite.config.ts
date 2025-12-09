@@ -119,8 +119,9 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-  root: "client", // your source folder
+  root: "client",
   plugins: [react(), tailwindcss()],
+  base: "./",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client/src"),
@@ -128,9 +129,8 @@ export default defineConfig({
       "@assets": path.resolve(__dirname, "attached_assets"),
     },
   },
-  base: "./", // important for relative paths
   build: {
-    outDir: "../dist", // inside project root
+    outDir: "dist", // inside client
     emptyOutDir: true,
   },
   server: {
@@ -138,4 +138,5 @@ export default defineConfig({
     host: true,
   },
 });
+
 
