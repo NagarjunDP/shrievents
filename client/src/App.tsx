@@ -1,17 +1,35 @@
-import { Toaster } from "../src/components/ui/sonner";
-import { TooltipProvider } from "../src/components/ui/tooltip";
-import NotFound from "../src/pages/NotFound";
+// import { Toaster } from "../src/components/ui/sonner";
+// import { TooltipProvider } from "../src/components/ui/tooltip";
+// import NotFound from "../src/pages/NotFound";
+// import { Route, Switch } from "wouter";
+// import ErrorBoundary from "./components/ErrorBoundary";
+// import { ThemeProvider } from "./contexts/ThemeContext";
+// import Header from "./components/Header";
+// import Footer from "./components/Footer";
+// import Home from "./pages/Home";
+// import Gallery from "./pages/Gallery";
+// import About from "./pages/About";
+// import Contact from "./pages/Contact";
+// import Testimonials from "./pages/Testimonials";
+// import Services from "./pages/Services";
+
+
+
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
-import ErrorBoundary from "./components/ErrorBoundary";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Gallery from "./pages/Gallery";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Testimonials from "./pages/Testimonials";
-import Services from "./pages/Services";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Home from "@/pages/Home";
+import Gallery from "@/pages/Gallery";
+import About from "@/pages/About";
+import Contact from "@/pages/Contact";
+import Testimonials from "@/pages/Testimonials";
+import Services from "@/pages/Services";
+
 
 function Router() {
   return (

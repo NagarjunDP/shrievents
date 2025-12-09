@@ -96,18 +96,20 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  root: "client",          // <- tells Vite where index.html is
+  root: "client",
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client/src"), // <- for @ imports
+      "@": path.resolve(__dirname, "client/src"), // <-- this allows @/ imports
     },
   },
   build: {
-    outDir: "../dist",      // <- build output relative to root
+    outDir: "../dist",
+    emptyOutDir: true, // cleans the output folder before build
   },
   server: {
     host: true,
     port: 5173,
   },
 });
+
