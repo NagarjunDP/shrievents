@@ -113,15 +113,15 @@
 //   },
 // });
 
- import { defineConfig } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-  root: "client",           // source folder
+  root: "client",
   plugins: [react(), tailwindcss()],
-  base: "./",               // relative paths for production
+  base: "./",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "client/src"),
@@ -130,9 +130,10 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: "dist",         // inside client
+    outDir: "../dist",   // output **outside client** to match Vercel expectation
     emptyOutDir: true,
   },
 });
+
 
 
