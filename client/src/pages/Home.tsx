@@ -2155,9 +2155,54 @@ function Hero() {
   const y = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 400], [1, 0.75]);
 
+  // Reusable Realistic 3D Balloon Component (no image!)
+  const RealisticBalloon = ({ color, size = "w-48 h-64", delay = 0, left, top }: any) => (
+    <motion.div
+      className={`absolute ${left} ${top} pointer-events-none`}
+      animate={{
+        y: [0, -70, -40, -90, -30, 0],
+        x: [0, 30, -40, 20, -30, 0],
+        rotate: [0, 8, -6, 10, -8, 0],
+      }}
+      transition={{
+        duration: 26 + delay,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay,
+      }}
+    >
+      <div className={`relative ${size}`}>
+        {/* Balloon Body */}
+        <div
+          className={`w-full h-full rounded-full shadow-2xl relative overflow-hidden
+            ${color === "gold" && "bg-gradient-to-b from-amber-300 via-yellow-400 to-amber-500"}
+            ${color === "rose" && "bg-gradient-to-b from-rose-400 via-pink-400 to-rose-500"}
+            ${color === "purple" && "bg-gradient-to-b from-purple-400 via-purple-500 to-purple-600"}
+          `}
+        >
+          {/* Shiny Highlight */}
+          <div className="absolute top-4 left-6 w-1/2 h-1/3 bg-white/40 rounded-full blur-xl" />
+          <div className="absolute top-8 left-10 w-1/3 h-1/4 bg-white/30 rounded-full blur-lg" />
+
+          {/* Knot at bottom */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-8 bg-black/20 rounded-b-full" />
+        </div>
+
+        {/* String */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0.5 h-48 bg-gradient-to-b from-white/40 via-amber-200/60 to-transparent" />
+        
+        {/* Tiny ribbon bow */}
+        <div className="absolute bottom-44 left-1/2 -translate-x-1/2">
+          <div className="w-8 h-4 bg-red-500/80 rounded-full -rotate-12" />
+          <div className="w-8 h-4 bg-red-500/80 rounded-full rotate-12 -mt-4" />
+        </div>
+      </div>
+    </motion.div>
+  );
+
   return (
     <section id="home" className="relative h-screen overflow-hidden">
-      {/* Parallax Hero Image */}
+      {/* Parallax Background */}
       <motion.div style={{ y }} className="absolute inset-0 -z-10">
         <img
           src="/event_hero_image_violet_brighter.webp"
@@ -2167,175 +2212,79 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-purple-900/40 to-transparent" />
       </motion.div>
 
-      {/* Floating Logo (Bottom Left) */}
+      {/* Floating Logo */}
       <div className="absolute left-4 bottom-6 md:left-16 md:bottom-16 z-30">
         <div className="bg-black/70 backdrop-blur-md rounded-full shadow-2xl p-3 md:p-6 border border-amber-400/30">
           <video
             src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
+            autoPlay loop muted playsInline
             className="w-12 h-12 md:w-32 md:h-32 object-contain"
           />
         </div>
       </div>
 
-      {/* MAIN CONTENT */}
-      <motion.div
-        style={{ opacity }}
-        className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
-      >
-        {/* === ONLY 3 REALISTIC BALLOONS + 2 BUTTERFLIES AROUND NAME === */}
-        <div className="absolute inset-0 pointer-events-none">
-          {/* Balloon 1 - Gold */}
-          <motion.div
-            animate={{
-              y: [0, -60, -30, -70, 0],
-              x: [-40, 20, -20, 30, -40],
-              rotate: [0, 10, -8, 5, 0],
-            }}
-            transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2"
-          >
-            <div className="relative">
-              <div className="w-20 h-28 bg-gradient-to-b from-amber-300 to-amber-500 rounded-full shadow-2xl" />
-              <div className="w-1 h-32 bg-gradient-to-b from-amber-200 to-transparent mx-auto -mt-1" />
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-6 bg-amber-200/60 rounded-full blur-md" />
-            </div>
-          </motion.div>
+      {/* 3 ULTRA-REALISTIC 3D BALLOONS (Pure CSS/SVG) */}
+      <div className="absolute inset-0 pointer-events-none">
+        <RealisticBalloon color="gold"   size="w-48 h-64 md:w-64 md:h-80" left="left-4 md:left-16" top="top-10 md:top-20" delay={0} />
+        <RealisticBalloon color="rose"   size="w-56 h-72 md:w-72 md:h-96" left="right-8 md:right-20" top="top-8 md:top-16" delay={4} />
+        <RealisticBalloon color="purple" size="w-52 h-68 md:w-68 md:h-88" left="left-1/4 md:left-1/3" top="top-16 md:top-24" delay={8} />
+      </div>
 
-          {/* Balloon 2 - Rose */}
-          <motion.div
-            animate={{
-              y: [0, -50, -80, -40, 0],
-              x: [60, -30, 40, -20, 60],
-              rotate: [0, -12, 8, -6, 0],
-            }}
-            transition={{ duration: 28, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute top-1/4 right-1/3"
-          >
-            <div className="relative">
-              <div className="w-24 h-32 bg-gradient-to-b from-rose-400 to-pink-500 rounded-full shadow-2xl" />
-              <div className="w-1 h-40 bg-gradient-to-b from-rose-200 to-transparent mx-auto -mt-1" />
-            </div>
-          </motion.div>
-
-          {/* Balloon 3 - Purple */}
-          <motion.div
-            animate={{
-              y: [0, -70, -40, -90, 0],
-              x: [-80, 40, -30, 50, -80],
-              rotate: [0, 15, -10, 8, 0],
-            }}
-            transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-            className="absolute top-1/3 left-1/3"
-          >
-            <div className="relative">
-              <div className="w-22 h-30 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full shadow-2xl" />
-              <div className="w-1 h-36 bg-gradient-to-b from-purple-200 to-transparent mx-auto -mt-1" />
-            </div>
-          </motion.div>
-
-          {/* Butterfly 1 - Delicate Gold */}
-          <motion.div
-            animate={{
-              y: [0, -40, 20, -30, 0],
-              x: [-100, 80, -60, 100, -100],
-              rotate: [0, 30, -30, 20, 0],
-            }}
-            transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/2 left-10 text-amber-300/70"
-          >
-            <svg className="w-12 h-12 drop-shadow-lg" viewBox="0 0 100 100">
-              <path d="M50 10 C30 30, 20 50, 40 70 C50 60, 60 60, 70 70 C90 50, 80 30, 60 10 C55 20, 45 20, 40 10" fill="currentColor" opacity="0.8"/>
-              <path d="M50 90 C70 70, 80 50, 60 30 C50 40, 40 40, 30 30 C10 50, 20 70, 40 90" fill="currentColor" opacity="0.6"/>
-            </svg>
-          </motion.div>
-
-          {/* Butterfly 2 - Soft Pink */}
-          <motion.div
-            animate={{
-              y: [0, -50, 30, -40, 0],
-              x: [120, -90, 100, -70, 120],
-              rotate: [0, -25, 35, -20, 0],
-            }}
-            transition={{ duration: 26, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-            className="absolute top-2/5 right-20 text-pink-300/60"
-          >
-            <svg className="w-10 h-10 drop-shadow-lg" viewBox="0 0 100 100">
-              <path d="M50 10 C30 30, 20 50, 40 70 C50 60, 60 60, 70 70 C90 50, 80 30, 60 10 C55 20, 45 20, 40 10" fill="currentColor" opacity="0.8"/>
-              <path d="M50 90 C70 70, 80 50, 60 30 C50 40, 40 40, 30 30 C10 50, 20 70, 40 90" fill="currentColor" opacity="0.6"/>
-            </svg>
-          </motion.div>
+      {/* Your Beautiful Butterflies */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-12 right-6 md:top-24 md:right-12 w-48 h-48 lg:w-64 lg:h-64 opacity-70 hidden sm:block">
+          <ButterflyAnimation />
         </div>
-
-        {/* Subtle Sparkles (Reduced to 12 for mobile performance) */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(12)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-amber-300 rounded-full opacity-60"
-              initial={{ y: -100 }}
-              animate={{ y: "110vh", x: `${20 + i * 6}vw` }}
-              transition={{
-                duration: 15 + i,
-                repeat: Infinity,
-                delay: i * 0.8,
-                ease: "linear",
-              }}
-            />
-          ))}
+        <div className="absolute bottom-32 left-8 md:bottom-44 md:left-16 w-40 h-40 lg:w-56 lg:h-56 opacity-60 hidden md:block">
+          <ButterflyAnimation />
         </div>
+      </div>
 
-        {/* GRAND TEXT CONTENT */}
+      {/* Subtle Sparkles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(10)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-amber-200 rounded-full blur-sm opacity-60"
+            initial={{ y: -100 }}
+            animate={{ y: "110vh" }}
+            transition={{ duration: 20 + i * 2, repeat: Infinity, delay: i * 1.2, ease: "linear" }}
+            style={{ left: `${15 + i * 7}%` }}
+          />
+        ))}
+      </div>
+
+      {/* Main Content */}
+      <motion.div style={{ opacity }} className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 100 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
-          className="mb-8 md:mb-12 relative"
+          className="mb-12"
         >
-          <div className="absolute -inset-6 bg-gradient-to-r from-amber-400/20 via-yellow-300/10 to-amber-400/20 blur-3xl rounded-full animate-pulse-slow" />
-          
           <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black tracking-tight leading-none bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100 bg-clip-text text-transparent drop-shadow-2xl">
             Shri Events
           </h1>
 
           <div className="flex items-center justify-center gap-10 mt-8">
             <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 1 }} className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase">
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }} className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase">
               Decoration and Management
             </motion.p>
             <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent" />
           </div>
         </motion.div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6, duration: 1.4 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8"
-        >
+        <motion.h2 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6 }} className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8">
           Celebrate Lovely Moments
         </motion.h2>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light"
-        >
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light">
           With us, every smile shines brighter than ever
         </motion.p>
 
-        {/* Royal CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.3, duration: 1 }}
-          className="flex flex-col sm:flex-row gap-6"
-        >
-          <a href="#services" className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:shadow-amber-400/60 hover:scale-105 transition-all duration-300 border border-amber-300">
+        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.3 }} className="flex flex-col sm:flex-row gap-6">
+          <a href="#services" className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:scale-105 transition-all border border-amber-300">
             Explore Services
           </a>
           <a href={`tel:${PHONE_NUMBER}`} className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all">
@@ -2345,11 +2294,7 @@ function Hero() {
       </motion.div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        animate={{ y: [0, 15, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
+      <motion.div animate={{ y: [0, 15, 0] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-10 left-1/2 -translate-x-1/2">
         <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
       </motion.div>
     </section>
