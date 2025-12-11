@@ -2153,6 +2153,7 @@ if (typeof window !== 'undefined') {
 
 //royal grand
 // ==== FINAL GRAND HERO – CLIENT WILL FALL IN LOVE INSTANTLY ====
+// ==== FINAL GRAND HERO – FIXED & PERFECT ====
 function Hero() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
@@ -2189,16 +2190,16 @@ function Hero() {
         style={{ opacity }}
         className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
       >
-        {/* SPARKLE PARTICLES BACKGROUND (Subtle Magic) */}
+        {/* Subtle Falling Sparkles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-amber-300 rounded-full opacity-70"
-              initial={{ y: -100, x: Math.random() * 100 + "vw" }}
+              initial={{ y: -100 }}
               animate={{
                 y: "110vh",
-                x: Math.random() * 100 + "vw",
+                x: `${Math.random() * 100}vw`,
               }}
               transition={{
                 duration: Math.random() * 10 + 10,
@@ -2210,17 +2211,16 @@ function Hero() {
           ))}
         </div>
 
-        {/* GRAND BUSINESS NAME – THIS IS THE MOMENT */}
+        {/* GRAND BUSINESS NAME */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7, y: 100 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
           className="mb-8 md:mb-12 relative"
         >
-          {/* Golden Glow Border */}
+          {/* Golden Glow Aura */}
           <div className="absolute -inset-4 bg-gradient-to-r from-amber-400/30 via-yellow-300/20 to-amber-400/30 blur-3xl rounded-full scale-150 animate-pulse-slow" />
 
-          {/* Main Name – MASSIVE & ROYAL */}
           <h1 className="
             text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem]
             font-black tracking-tight leading-none
@@ -2233,7 +2233,7 @@ function Hero() {
             Shri Events
           </h1>
 
-          {/* Elegant Subtitle with Royal Lines */}
+          {/* Royal Subtitle */}
           <div className="flex items-center justify-center gap-10 mt-8">
             <motion.div
               initial={{ width: 0 }}
@@ -2258,7 +2258,6 @@ function Hero() {
           </div>
         </motion.div>
 
-        {/* Tagline – Cinematic */}
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -2299,7 +2298,7 @@ function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll Down */}
+      {/* Scroll Indicator */}
       <motion.div
         animate={{ y: [0, 15, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
@@ -2308,7 +2307,6 @@ function Hero() {
         <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
       </motion.div>
     </section>
-  </section>
   );
 }
 
