@@ -2314,151 +2314,122 @@ if (typeof window !== 'undefined') {
 // ==== FINAL SMOOTH + GRAND HERO – PERFECT FOR MOBILE & DESKTOP ====
 function Hero() {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 120]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0.8]);
+  const yBg = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0.85]);
+
+  // Very light floating particles (only 8)
+  const particles = [...Array(8)];
+  // Elegant balloons (only 6 – soft floating animation)
+  const balloons = [...Array(6)];
 
   return (
-    <section id="home" className="relative h-screen overflow-hidden">
-      {/* Parallax Background */}
-      <motion.div style={{ y }} className="absolute inset-0 -z-10">
-        <img
-          src="/event_hero_image_violet_brighter.webp"
-          alt="Shri Events"
-          className="w-full h-full object-cover"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-purple-900/30 to-transparent" />
-      </motion.div>
+    <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950 flex items-center justify-center">
+      {/* Parallax Background Layer */}
+      <motion.div
+        style={{ y: yBg, opacity }}
+        className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center opacity-30"
+      />
 
-      {/* Floating Logo */}
-      <div className="absolute left-4 bottom-6 md:left-12 md:bottom-12 z-30">
-        <div className="bg-black/60 backdrop-blur-md rounded-full shadow-2xl p-2.5 md:p-5 border border-white/20">
-          <video
-            src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-10 h-10 md:w-24 md:h-24 object-contain"
-          />
-        </div>
-      </div>
+      {/* Subtle Sparkles / Floating Particles */}
+      {particles.map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-yellow-300/30 rounded-full blur-sm"
+          animate={{
+            y: [0, -30, 10, -20, 0],
+            x: [0, 15, -20, 10, 0],
+            opacity: [0.1, 0.4, 0.6, 0.4, 0.1],
+          }}
+          transition={{
+            duration: 15 + i * 2,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          style={{
+            left: `${10 + i * 12}%`,
+            top: `${20 + i * 8}%`,
+          }}
+        />
+      ))}
+
+      {/* Floating Balloons – Elegant & Classy */}
+      {balloons.map((_, i) => (
+        <motion.div
+          key={`balloon-${i}`}
+          className="absolute"
+          animate={{
+            y: [0, -40, -20, -50, 0],
+            rotate: [0, 5, -5, 3, 0],
+          }}
+          transition={{
+            duration: 18 + i * 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          style={{
+            left: `${15 + i * 13}%`,
+            top: `${30 + i * 10}%`,
+          }}
+        >
+          <div className={`w-16 h-20 rounded-full opacity-70 shadow-2xl
+            ${i % 3 === 0 ? "bg-rose-400" : i % 3 === 1 ? "bg-amber-400" : "bg-purple-400"}
+          `} />
+          <div className="w-px h-32 bg-gradient-to-b from-white/30 to-transparent mx-auto -mt-2" />
+        </motion.div>
+      ))}
 
       {/* Main Content */}
       <motion.div
-        style={{ opacity }}
-        className="relative z-10 h-full flex flex-col justify-center items-center text-center px-5 md:px-8"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
       >
-        {/* Very Light Sparkles – Only 8, super optimized */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(8)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-white/60 rounded-full"
-              initial={{ y: -20, x: `${i * 12.5}vw` }}
-              animate={{ y: "110vh" }}
-              transition={{
-                duration: 12 + i * 2,
-                repeat: Infinity,
-                ease: "linear",
-                delay: i * 1.5,
-              }}
-              style={{ willChange: "transform" }}
-            />
-          ))}
-        </div>
+        {/* Company Name – Royal & Elegant */}
+        <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-4">
+          <span className="text-white drop-shadow-2xl">Shri</span>
+          <span className="text-amber-400 drop-shadow-2xl"> Events</span>
+        </h1>
 
-        {/* GRAND BUSINESS NAME – Clean & Royal */}
-        <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
-          className="mb-6 md:mb-10"
-        >
-          {/* Name – Pure White + Elegant Gold Stroke */}
-          <h1 className="
-            text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl
-            font-black tracking-tight leading-none
-            text-white
-            drop-shadow-2xl
-            [text-shadow:0_4px_20px_rgba(0,0,0,0.8)]
-            relative
-          ">
-            Shri Events
-            {/* Elegant gold stroke effect */}
-            <span className="absolute inset-0 text-transparent [background:linear-gradient(transparent_60%,#fbbf24_60%)] bg-clip-text opacity-70 -z-10">
-              Shri Events
-            </span>
-          </h1>
-
-          {/* Subtitle – Clean & Classy */}
-          <div className="flex items-center justify-center gap-6 md:gap-12 mt-6 md:mt-10">
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 1.2, delay: 0.8 }}
-              className="h-px w-16 md:w-32 bg-gradient-to-r from-transparent via-white/40 to-transparent origin-left"
-            />
-            <p className="text-lg sm:text-xl md:text-2xl font-medium tracking-widest text-white/90 uppercase">
-              Decoration and Management
-            </p>
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 1.2, delay: 0.8 }}
-              className="h-px w-16 md:w-32 bg-gradient-to-l from-transparent via-white/40 to-transparent origin-right"
-            />
-          </div>
-        </motion.div>
+        {/* Subtitle */}
+        <p className="text-2xl md:text-4xl text-amber-100 font-light tracking-wide mb-3">
+          Decoration & Management
+        </p>
 
         {/* Tagline */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 1.2 }}
-          className="text-3xl sm:text-4xl md:text-6xl font-bold text-white drop-shadow-xl mb-6"
-        >
+        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
           Celebrate Lovely Moments
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="text-lg md:text-2xl text-pink-100 mb-10 max-w-2xl font-light"
-        >
+        </p>
+        <p className="text-sm md:text-base text-gray-400 max-w-3xl mx-auto mb-12">
           With us, every smile shines brighter than ever
-        </motion.p>
+        </p>
 
-        {/* Buttons – Clean & Fast */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4"
-        >
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#services"
-            className="px-10 py-4 bg-gradient-to-r from-pink-600 to-purple-700 text-white font-bold text-lg rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+            className="px-8 py-4 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
           >
             Explore Services
           </a>
           <a
-            href={`tel:${PHONE_NUMBER}`}
-            className="px-10 py-4 bg-white/20 backdrop-blur border border-white/30 text-white font-bold text-lg rounded-full hover:bg-white/30 transition-all"
+            href="tel:+919876543210"
+            className="px-8 py-4 border-2 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-slate-900 font-semibold rounded-full transition-all duration-300 backdrop-blur-sm"
           >
             Call Now
           </a>
-        </motion.div>
-      </motion.div>
+        </div>
 
-      {/* Scroll Down */}
-      <motion.div
-        animate={{ y: [0, 12, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70"
-      >
-        <ChevronRight className="w-8 h-8 rotate-90" />
+        {/* Scroll Indicator */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        >
+          <div className="w-6 h-10 border-2 border-amber-400/50 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-amber-400/60 rounded-full mt-2 animate-bounce" />
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );
