@@ -2018,137 +2018,302 @@ if (typeof window !== 'undefined') {
 // }
 
 // ==== Hero Section ====
+//minimal
+// function Hero() {
+//   const { scrollY } = useScroll();
+//   const y = useTransform(scrollY, [0, 500], [0, 150]);
+//   const opacity = useTransform(scrollY, [0, 300], [1, 0.7]);
+
+//   return (
+//     <section id="home" className="relative h-screen overflow-hidden">
+//       <motion.div style={{ y }} className="absolute inset-0">
+//         <img
+//           src="/event_hero_image_violet_brighter.webp"
+//           alt="Shri Events Hero"
+//           className="w-full h-full object-cover"
+//         />
+        
+//         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
+//       </motion.div>
+//       <div
+//   className="
+//     absolute 
+//     left-4 bottom-6 
+//     md:left-16 md:bottom-16
+//     flex flex-col items-end z-30
+//   "
+// >
+//   <div
+//     className="
+//       bg-black/80 rounded-full
+//       shadow-2xl flex items-center justify-center
+//       w-[60px] h-[60px]            /* MOBILE SIZE */
+//       md:w-[132px] md:h-[132px]    /* DESKTOP SIZE */
+//     "
+//   >
+//     <video
+//       src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
+//       autoPlay
+//       loop
+//       muted
+//       playsInline
+//       className="
+//         object-contain
+//         w-[36px] h-[36px]            /* MOBILE VIDEO SIZE */
+//         md:w-[200px] md:h-[150px]    /* DESKTOP VIDEO SIZE */
+//       "
+//       style={{
+//         background: "transparent"
+//       }}
+//     />
+//   </div>
+// </div>
+
+//       <motion.div
+//         style={{ opacity }}
+//         className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4"
+//       >
+//       {/* === BIG PROFESSIONAL BUSINESS NAME === */}
+//         <motion.div
+//     initial={{ opacity: 0, y: 50 }}
+//     animate={{ opacity: 1, y: 0 }}
+//     transition={{ duration: 1.4, ease: "easeOut" }}
+//     className="mb-12"
+//   >
+//     {/* Main Name – Clean, Bold, Minimal */}
+//     <h1 className="
+//       text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl
+//       font-black tracking-tight
+//       text-white
+//       drop-shadow-2xl
+//       leading-none
+//     ">
+//       Shri Events
+//     </h1>
+
+//     {/* Subtext – Elegant divider style */}
+//     <div className="flex items-center justify-center gap-6 mt-6">
+//       <div className="h-px w-20 bg-gradient-to-r from-transparent to-white/60"></div>
+//       <p className="
+//         text-base xs:text-lg sm:text-xl md:text-2xl
+//         font-medium tracking-widest text-white/90
+//         uppercase
+//       ">
+//         Decoration and Management
+//       </p>
+//       <div className="h-px w-20 bg-gradient-to-l from-transparent to-white/60"></div>
+//     </div>
+//   </motion.div>
+//         <motion.h1
+//           initial={{ opacity: 0, y: 30 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 1 }}
+//           className="text-5xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl mb-6"
+//         >
+//           Celebrate Lovely Moments
+//         </motion.h1>
+//         <motion.p
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 0.3, duration: 0.8 }}
+//           className="text-xl md:text-2xl text-pink-200 max-w-3xl mx-auto mb-10 font-light"
+//         >
+//           With us, every smile shines brighter than ever
+//         </motion.p>
+//         <motion.div
+//           initial={{ opacity: 0, scale: 0.8 }}
+//           animate={{ opacity: 1, scale: 1 }}
+//           transition={{ delay: 0.6, duration: 0.8 }}
+//           className="flex flex-col sm:flex-row gap-4"
+//         >
+//           <a
+//             href="services"
+//             className="px-8 py-4 bg-gradient-to-r from-pink-600 to-purple-700 text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all"
+//           >
+//             Explore Services
+//           </a>
+//           <a
+//             href={`tel:${PHONE_NUMBER}`}
+//             className="px-8 py-4 bg-white/20 backdrop-blur-sm border border-white/40 text-white font-semibold rounded-full hover:bg-white/30 transition-all"
+//           >
+//             Call Now
+//           </a>
+//         </motion.div>
+//       </motion.div>
+//       <motion.div
+//         animate={{ y: [0, 10, 0] }}
+//         transition={{ duration: 2, repeat: Infinity }}
+//         className="absolute bottom-8 left-1/2 -translate-x-1/2"
+//       >
+//         <ChevronRight className="w-8 h-8 text-pink-300 rotate-90" />
+//       </motion.div>
+//     </section>
+//   );
+// }
+
+//royal grand
+// ==== FINAL GRAND HERO – CLIENT WILL FALL IN LOVE INSTANTLY ====
 function Hero() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0.7]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0.75]);
 
   return (
     <section id="home" className="relative h-screen overflow-hidden">
-      <motion.div style={{ y }} className="absolute inset-0">
+      {/* Parallax Background */}
+      <motion.div style={{ y }} className="absolute inset-0 -z-10">
         <img
           src="/event_hero_image_violet_brighter.webp"
-          alt="Shri Events Hero"
+          alt="Shri Events"
           className="w-full h-full object-cover"
         />
-        
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-purple-900/40 to-transparent" />
       </motion.div>
-      <div
-  className="
-    absolute 
-    left-4 bottom-6 
-    md:left-16 md:bottom-16
-    flex flex-col items-end z-30
-  "
->
-  <div
-    className="
-      bg-black/80 rounded-full
-      shadow-2xl flex items-center justify-center
-      w-[60px] h-[60px]            /* MOBILE SIZE */
-      md:w-[132px] md:h-[132px]    /* DESKTOP SIZE */
-    "
-  >
-    <video
-      src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="
-        object-contain
-        w-[36px] h-[36px]            /* MOBILE VIDEO SIZE */
-        md:w-[200px] md:h-[150px]    /* DESKTOP VIDEO SIZE */
-      "
-      style={{
-        background: "transparent"
-      }}
-    />
-  </div>
-</div>
 
+      {/* Floating Logo (Bottom Left) */}
+      <div className="absolute left-4 bottom-6 md:left-16 md:bottom-16 z-30">
+        <div className="bg-black/70 backdrop-blur-md rounded-full shadow-2xl p-3 md:p-6 border border-amber-400/30">
+          <video
+            src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-12 h-12 md:w-32 md:h-32 object-contain"
+          />
+        </div>
+      </div>
+
+      {/* MAIN GRAND CONTENT */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4"
+        className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
       >
-      {/* === BIG PROFESSIONAL BUSINESS NAME === */}
-        <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1.4, ease: "easeOut" }}
-    className="mb-12"
-  >
-    {/* Main Name – Clean, Bold, Minimal */}
-    <h1 className="
-      text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl
-      font-black tracking-tight
-      text-white
-      drop-shadow-2xl
-      leading-none
-    ">
-      Shri Events
-    </h1>
+        {/* SPARKLE PARTICLES BACKGROUND (Subtle Magic) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-amber-300 rounded-full opacity-70"
+              initial={{ y: -100, x: Math.random() * 100 + "vw" }}
+              animate={{
+                y: "110vh",
+                x: Math.random() * 100 + "vw",
+              }}
+              transition={{
+                duration: Math.random() * 10 + 10,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "linear",
+              }}
+            />
+          ))}
+        </div>
 
-    {/* Subtext – Elegant divider style */}
-    <div className="flex items-center justify-center gap-6 mt-6">
-      <div className="h-px w-20 bg-gradient-to-r from-transparent to-white/60"></div>
-      <p className="
-        text-base xs:text-lg sm:text-xl md:text-2xl
-        font-medium tracking-widest text-white/90
-        uppercase
-      ">
-        Decoration and Management
-      </p>
-      <div className="h-px w-20 bg-gradient-to-l from-transparent to-white/60"></div>
-    </div>
-  </motion.div>
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+        {/* GRAND BUSINESS NAME – THIS IS THE MOMENT */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.7, y: 100 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
+          className="mb-8 md:mb-12 relative"
+        >
+          {/* Golden Glow Border */}
+          <div className="absolute -inset-4 bg-gradient-to-r from-amber-400/30 via-yellow-300/20 to-amber-400/30 blur-3xl rounded-full scale-150 animate-pulse-slow" />
+
+          {/* Main Name – MASSIVE & ROYAL */}
+          <h1 className="
+            text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem]
+            font-black tracking-tight leading-none
+            bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100
+            bg-clip-text text-transparent
+            drop-shadow-2xl
+            relative z-10
+            animate-title-glow
+          ">
+            Shri Events
+          </h1>
+
+          {/* Elegant Subtitle with Royal Lines */}
+          <div className="flex items-center justify-center gap-10 mt-8">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "140px" }}
+              transition={{ duration: 1.5, delay: 1 }}
+              className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"
+            />
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 1 }}
+              className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase"
+            >
+              Decoration and Management
+            </motion.p>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "140px" }}
+              transition={{ duration: 1.5, delay: 1 }}
+              className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent"
+            />
+          </div>
+        </motion.div>
+
+        {/* Tagline – Cinematic */}
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white drop-shadow-2xl mb-6"
+          transition={{ delay: 1.6, duration: 1.4 }}
+          className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8"
         >
           Celebrate Lovely Moments
-        </motion.h1>
+        </motion.h2>
+
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-xl md:text-2xl text-pink-200 max-w-3xl mx-auto mb-10 font-light"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light"
         >
           With us, every smile shines brighter than ever
         </motion.p>
+
+        {/* Royal Buttons */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.3, duration: 1 }}
+          className="flex flex-col sm:flex-row gap-6"
         >
           <a
-            href="services"
-            className="px-8 py-4 bg-gradient-to-r from-pink-600 to-purple-700 text-white font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all"
+            href="#services"
+            className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:shadow-amber-400/60 hover:scale-105 transition-all duration-300 border border-amber-300"
           >
             Explore Services
           </a>
           <a
             href={`tel:${PHONE_NUMBER}`}
-            className="px-8 py-4 bg-white/20 backdrop-blur-sm border border-white/40 text-white font-semibold rounded-full hover:bg-white/30 transition-all"
+            className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all"
           >
-            Call Now
+            Call Now +91 97392 20735
           </a>
         </motion.div>
       </motion.div>
+
+      {/* Scroll Down */}
       <motion.div
-        animate={{ y: [0, 10, 0] }}
+        animate={{ y: [0, 15, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <ChevronRight className="w-8 h-8 text-pink-300 rotate-90" />
+        <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
       </motion.div>
     </section>
+  </section>
   );
 }
+
+
+
 {/* ========== PROFESSIONAL SERVICES GRID SECTION ========== */}
 <section className="py-24 md:py-32 bg-gradient-to-b from-white via-pink-50/50 to-purple-50/30">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -2618,7 +2783,27 @@ export default function Home() {
     <>
       <Hero />
 
-
+{/* GLOBAL ANIMATIONS – Paste once */}
+<style jsx global>{`
+  @keyframes title-glow {
+    0%, 100% { 
+      text-shadow: 0 0 40px rgba(251, 191, 36, 0.8), 
+                    0 0 80px rgba(251, 191, 36, 0.5),
+                    0 0 120px rgba(251, 191, 36, 0.3);
+    }
+    50% { 
+      text-shadow: 0 0 60px rgba(251, 191, 36, 1), 
+                    0 0 100px rgba(251, 191, 36, 0.7),
+                    0 0 140px rgba(251, 191, 36, 0.5);
+    }
+  }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+  }
+  .animate-title-glow { animation: title-glow 5s ease-in-out infinite; }
+  .animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+`}</style>
 {/* ========== PERFECT HORIZONTAL SERVICES CAROUSEL (NO EDGE CUT-OFF) ========== */}
 {/* ========== FINAL: CLEAN, SMALL, PREMIUM SCROLLING SERVICES (USING YOUR REAL DATA) ========== */}
 <section className="py-20 md:py-28 bg-white">
