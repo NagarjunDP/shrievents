@@ -2158,25 +2158,27 @@ function Hero() {
   const textY = useTransform(scrollY, [0, 300], [0, 100]);
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
-  // FIXED: Using Unsplash URLs so you can see the slideshow WORK immediately.
-  // Replace these strings with your local paths later (e.g. "/my-image.jpg")
+  // BACKGROUND IMAGES
+  // NOTE: Ensure these files are inside your 'public' folder. 
+  // If the image name is wrong, the background color will show instead.
   const backgroundImages = [
-    "https://images.unsplash.com/photo-1519225427186-686869fb3b6d?q=80&w=2070&auto=format&fit=crop", // Wedding Decor 1
-    "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop", // Wedding Decor 2
-    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop", // Wedding Decor 3
+    "/event_hero_image_violet_brighter.webp", 
+    // Add client photos here later:
+    // "/decor_setup_1.jpg", 
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
 
-  // Slideshow Logic (Changes every 5 seconds)
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+    if (backgroundImages.length > 1) {
+      const timer = setInterval(() => {
+        setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
+      }, 5000);
+      return () => clearInterval(timer);
+    }
+  }, [backgroundImages.length]);
 
-  // 3 Fixed Butterflies
+  // 3 ELEGANT BUTTERFLIES
   const butterflies = [
     { id: 1, top: '15%', left: '10%', scale: 1, delay: 0 },   
     { id: 2, top: '25%', right: '10%', scale: 0.8, delay: 2 }, 
@@ -2184,10 +2186,13 @@ function Hero() {
   ];
 
   return (
-    <section id="home" className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center">
+    <section id="home" className="relative h-screen w-full overflow-hidden bg-slate-950 flex items-center justify-center">
       
-      {/* 1. BACKGROUND SLIDESHOW */}
-      <div className="absolute inset-0 -z-20">
+      {/* 1. BACKGROUND LAYER (Z-0) */}
+      <div className="absolute inset-0 z-0">
+        {/* Fallback Gradient if image fails to load */}
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-purple-950 to-black" />
+
         <AnimatePresence mode='popLayout'>
           <motion.img
             key={currentImage}
@@ -2197,16 +2202,20 @@ function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 3, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover opacity-80" 
           />
         </AnimatePresence>
         
-        {/* Dark Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+        {/* Purple/Pink Overlay for Text Readability */}
+        {/* This blends the image with the brand colors */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-purple-900/30 to-black/90" />
+        
+        {/* Cinematic Grain */}
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
       </div>
 
-      {/* 2. BUTTERFLIES */}
-      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+      {/* 2. BUTTERFLIES (Z-10) */}
+      <div className="absolute inset-0 pointer-events-none z-10 overflow-visible">
         {butterflies.map((fly) => (
           <motion.div
             key={fly.id}
@@ -2214,51 +2223,63 @@ function Hero() {
             style={{ 
               top: fly.top, 
               left: fly.left, 
-              right: fly.right,
+              right: fly.right, 
             }}
-            animate={{ y: [0, -15, 0] }} // Gentle breathing
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: fly.delay }}
+            animate={{
+              y: [0, -15, 0], 
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: fly.delay,
+            }}
           >
-            {/* REPLACE THIS WITH: <ButterflyAnimation /> */}
-            <div className="w-full h-full bg-amber-400/20 blur-xl rounded-full animate-pulse" /> 
-            
-            <div className="absolute inset-0 blur-[40px] bg-amber-500/30 rounded-full -z-10" />
+            <ButterflyAnimation />
+            {/* Violet/Pink Glow behind butterfly */}
+            <div className="absolute inset-0 blur-[50px] bg-fuchsia-500/40 rounded-full -z-10" />
           </motion.div>
         ))}
       </div>
 
-      {/* 3. HERO TEXT CONTENT */}
+      {/* 3. MAIN CONTENT (Z-20) */}
       <motion.div 
         style={{ opacity, y: textY }}
         className="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-7xl mx-auto"
       >
-        {/* Tagline 1 */}
+        
+        {/* TOP TAGLINE */}
         <motion.div 
           initial={{ opacity: 0, letterSpacing: "0em" }}
           animate={{ opacity: 1, letterSpacing: "0.2em" }} 
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="flex items-center gap-4 mb-6 md:mb-10"
         >
-          <div className="h-[1px] w-8 md:w-24 bg-gradient-to-r from-transparent to-amber-300" />
-          <span className="text-amber-200 text-xs md:text-lg font-light uppercase tracking-widest text-nowrap">
+          {/* Gradient Lines: Violet to Pink */}
+          <div className="h-[1px] w-8 md:w-24 bg-gradient-to-r from-transparent to-pink-400" />
+          <span className="text-pink-200 text-xs md:text-lg font-light uppercase tracking-widest text-nowrap">
             Decoration And Management
           </span>
-          <div className="h-[1px] w-8 md:w-24 bg-gradient-to-l from-transparent to-amber-300" />
+          <div className="h-[1px] w-8 md:w-24 bg-gradient-to-l from-transparent to-pink-400" />
         </motion.div>
 
-        {/* Main Title */}
+        {/* MAIN TITLE: SHRI EVENTS */}
         <div className="relative">
+          {/* Massive Violet/Pink Glow behind title */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-purple-500/20 blur-[100px] rounded-full -z-10" />
+          
           <motion.h1
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] font-serif font-medium leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-amber-100 via-amber-200 to-amber-500 drop-shadow-2xl"
+            // BRAND COLOR GRADIENT: White -> Pink -> Violet
+            className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] font-serif font-medium leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-pink-200 to-fuchsia-600 drop-shadow-2xl"
           >
             Shri Events
           </motion.h1>
         </div>
 
-        {/* Tagline 2 */}
+        {/* MIDDLE TAGLINE */}
         <motion.h2 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -2268,39 +2289,49 @@ function Hero() {
           Celebrate Lovely Moment
         </motion.h2>
 
-        {/* Tagline 3 */}
+        {/* BOTTOM TAGLINE */}
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="mt-4 text-lg md:text-2xl text-amber-100/80 font-serif italic"
+          className="mt-4 text-lg md:text-2xl text-pink-100/80 font-serif italic"
         >
           " We make your smile "
         </motion.p>
 
-        {/* Buttons */}
+        {/* BUTTONS - Updated to Pink/Purple Theme */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8 }}
           className="mt-12 flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
         >
-          <a href="#services" className="px-10 py-4 bg-amber-500 text-black font-bold text-lg rounded-full shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:scale-105 transition-transform duration-300 border border-amber-400">
+          <a 
+            href="#services"
+            // Button 1: Gradient Pink to Purple
+            className="px-10 py-4 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white font-bold text-lg rounded-full shadow-[0_0_30px_rgba(192,38,211,0.4)] hover:scale-105 transition-transform duration-300 border border-fuchsia-400/50"
+          >
             Explore Decor
           </a>
-          <a href="tel:+919739220735" className="px-10 py-4 bg-white/5 backdrop-blur-md border border-amber-200/30 text-amber-100 font-medium text-lg rounded-full hover:bg-white/10 transition-colors">
+          <a 
+            href="tel:+919739220735"
+            // Button 2: Glassmorphism with Pink Border
+            className="px-10 py-4 bg-white/5 backdrop-blur-md border border-pink-300/30 text-pink-100 font-medium text-lg rounded-full hover:bg-white/10 transition-colors"
+          >
             Book Consultation
           </a>
         </motion.div>
+
       </motion.div>
 
-      {/* Scroll Arrow */}
+      {/* SCROLL INDICATOR */}
       <motion.div 
         animate={{ y: [0, 10, 0] }} 
         transition={{ duration: 2, repeat: Infinity }} 
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2"
       >
-        <ChevronRight className="w-6 h-6 text-amber-400 rotate-90" />
+        <span className="text-[10px] uppercase tracking-[0.2em] text-fuchsia-300/60">Scroll Down</span>
+        <ChevronRight className="w-6 h-6 text-fuchsia-400 rotate-90" />
       </motion.div>
     </section>
   );
