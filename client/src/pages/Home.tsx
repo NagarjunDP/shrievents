@@ -2153,21 +2153,22 @@ if (typeof window !== 'undefined') {
 function Hero() {
   const { scrollY } = useScroll();
   
-  // Parallax effects for high-end feel
+  // Parallax effects
   const y = useTransform(scrollY, [0, 500], [0, 200]);
   const textY = useTransform(scrollY, [0, 300], [0, 100]);
   const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
-  // BACKGROUND IMAGES - REPLACE THESE WITH CLIENT'S DECORATION PHOTOS
+  // FIXED: Using Unsplash URLs so you can see the slideshow WORK immediately.
+  // Replace these strings with your local paths later (e.g. "/my-image.jpg")
   const backgroundImages = [
-    "/event_hero_image_violet_brighter.webp", 
-    "/event16.webp", 
-    "/event14.webp"
+    "https://images.unsplash.com/photo-1519225427186-686869fb3b6d?q=80&w=2070&auto=format&fit=crop", // Wedding Decor 1
+    "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop", // Wedding Decor 2
+    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop", // Wedding Decor 3
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
 
-  // Slow, elegant image transition (5 seconds)
+  // Slideshow Logic (Changes every 5 seconds)
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
@@ -2175,17 +2176,17 @@ function Hero() {
     return () => clearInterval(timer);
   }, []);
 
-  // 3 FIXED POSITION BUTTERFLIES (No random movement, just elegant hovering)
+  // 3 Fixed Butterflies
   const butterflies = [
-    { id: 1, top: '15%', left: '10%', scale: 1, delay: 0 },   // Top Left
-    { id: 2, top: '25%', right: '10%', scale: 0.8, delay: 2 }, // Top Right
-    { id: 3, top: '75%', right: '15%', scale: 1.2, delay: 1 }, // Bottom Right
+    { id: 1, top: '15%', left: '10%', scale: 1, delay: 0 },   
+    { id: 2, top: '25%', right: '10%', scale: 0.8, delay: 2 }, 
+    { id: 3, top: '75%', right: '15%', scale: 1.2, delay: 1 }, 
   ];
 
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center">
       
-      {/* 1. LUXURY BACKGROUND SLIDESHOW */}
+      {/* 1. BACKGROUND SLIDESHOW */}
       <div className="absolute inset-0 -z-20">
         <AnimatePresence mode='popLayout'>
           <motion.img
@@ -2200,15 +2201,12 @@ function Hero() {
           />
         </AnimatePresence>
         
-        {/* Expensive Dark Gradient Overlay - Makes text pop */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90" />
-        
-        {/* Cinematic Grain Texture (Optional for 'Film' look) */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }}></div>
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
       </div>
 
-      {/* 2. THREE ELEGANT BUTTERFLIES (Fixed Positions) */}
-      <div className="absolute inset-0 pointer-events-none z-10 overflow-visible">
+      {/* 2. BUTTERFLIES */}
+      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
         {butterflies.map((fly) => (
           <motion.div
             key={fly.id}
@@ -2218,35 +2216,26 @@ function Hero() {
               left: fly.left, 
               right: fly.right,
             }}
-            animate={{
-              y: [0, -15, 0], // Gentle breathing motion only
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: fly.delay,
-            }}
+            animate={{ y: [0, -15, 0] }} // Gentle breathing
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: fly.delay }}
           >
-            {/* Using your component */}
-            <ButterflyAnimation />
+            {/* REPLACE THIS WITH: <ButterflyAnimation /> */}
+            <div className="w-full h-full bg-amber-400/20 blur-xl rounded-full animate-pulse" /> 
             
-            {/* Subtle Golden Glow behind butterfly */}
             <div className="absolute inset-0 blur-[40px] bg-amber-500/30 rounded-full -z-10" />
           </motion.div>
         ))}
       </div>
 
-      {/* 3. CENTERED MASTERPIECE CONTENT */}
+      {/* 3. HERO TEXT CONTENT */}
       <motion.div 
         style={{ opacity, y: textY }}
         className="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-7xl mx-auto"
       >
-        
-        {/* TOP TAGLINE: Decoration And Management */}
+        {/* Tagline 1 */}
         <motion.div 
           initial={{ opacity: 0, letterSpacing: "0em" }}
-          animate={{ opacity: 1, letterSpacing: "0.2em" }} // Expands elegantly
+          animate={{ opacity: 1, letterSpacing: "0.2em" }} 
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="flex items-center gap-4 mb-6 md:mb-10"
         >
@@ -2257,11 +2246,8 @@ function Hero() {
           <div className="h-[1px] w-8 md:w-24 bg-gradient-to-l from-transparent to-amber-300" />
         </motion.div>
 
-        {/* MAIN TITLE: SHRI EVENTS */}
+        {/* Main Title */}
         <div className="relative">
-          {/* Ambient Glow behind title */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-amber-500/10 blur-[80px] rounded-full -z-10" />
-          
           <motion.h1
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -2272,7 +2258,7 @@ function Hero() {
           </motion.h1>
         </div>
 
-        {/* MIDDLE TAGLINE: Celebrate Lovely Moment */}
+        {/* Tagline 2 */}
         <motion.h2 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -2282,7 +2268,7 @@ function Hero() {
           Celebrate Lovely Moment
         </motion.h2>
 
-        {/* BOTTOM EMOTIONAL TAGLINE: We make your smile */}
+        {/* Tagline 3 */}
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -2292,36 +2278,28 @@ function Hero() {
           " We make your smile "
         </motion.p>
 
-        {/* ACTION BUTTONS */}
+        {/* Buttons */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8 }}
           className="mt-12 flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
         >
-          <a 
-            href="#services"
-            className="px-10 py-4 bg-amber-500 text-black font-bold text-lg rounded-full shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:scale-105 transition-transform duration-300 border border-amber-400"
-          >
+          <a href="#services" className="px-10 py-4 bg-amber-500 text-black font-bold text-lg rounded-full shadow-[0_0_30px_rgba(245,158,11,0.3)] hover:scale-105 transition-transform duration-300 border border-amber-400">
             Explore Decor
           </a>
-          <a 
-            href="tel:+919739220735"
-            className="px-10 py-4 bg-white/5 backdrop-blur-md border border-amber-200/30 text-amber-100 font-medium text-lg rounded-full hover:bg-white/10 transition-colors"
-          >
+          <a href="tel:+919739220735" className="px-10 py-4 bg-white/5 backdrop-blur-md border border-amber-200/30 text-amber-100 font-medium text-lg rounded-full hover:bg-white/10 transition-colors">
             Book Consultation
           </a>
         </motion.div>
-
       </motion.div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Arrow */}
       <motion.div 
         animate={{ y: [0, 10, 0] }} 
         transition={{ duration: 2, repeat: Infinity }} 
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
       >
-        <span className="text-[10px] uppercase tracking-[0.2em] text-amber-400/60">Scroll Down</span>
         <ChevronRight className="w-6 h-6 text-amber-400 rotate-90" />
       </motion.div>
     </section>
