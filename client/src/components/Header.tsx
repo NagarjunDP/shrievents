@@ -1118,7 +1118,7 @@ export default function Header() {
         }`}
       >
         {/* Subtle gradient only on Home when transparent */}
-        {showTransparent && (
+        {/* /* {showTransparent && (
           <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
             <motion.div
               animate={{ x: [-100, 100, -100] }}
@@ -1126,7 +1126,7 @@ export default function Header() {
               className="absolute top-10 -left-40 w-96 h-96 bg-gradient-to-br from-blue-300 via-purple-300 to-pink-300 rounded-full blur-3xl"
             />
           </div>
-        )}
+        )}  */ */}
 
         <div className="flex items-center justify-between h-28 px-6 lg:px-12">
           {/* Logos */}
