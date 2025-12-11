@@ -1879,7 +1879,7 @@ import {
 } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
+import ButterflyAnimation from "../components/ButterflyAnimation"; // Ensure this exports default
 interface Highlight {
   // whatever you need
 }
