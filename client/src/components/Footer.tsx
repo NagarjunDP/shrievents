@@ -570,10 +570,10 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-yellow-400">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               {[
-                { label: "Home", href: "#" },
-                { label: "Services", href: "#services" },
-                { label: "Gallery", href: "#gallery" },
-                { label: "Contact", href: "#contact" },
+                { label: "Home", href: "/" },
+                { label: "Services", href: "/services" },
+                { label: "Gallery", href: "/gallery" },
+                { label: "Contact", href: "/contact" },
               ].map((link) => (
                 <motion.li key={link.href} whileHover={{ x: 4 }}>
                   <a className="hover:text-yellow-400 transition-colors" href={link.href}>
