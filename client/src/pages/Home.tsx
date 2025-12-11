@@ -2150,27 +2150,194 @@ if (typeof window !== 'undefined') {
 //     </section>
 //   );
 // }
+
+//good working new theory
+// function Hero() {
+//   const { scrollY } = useScroll();
+  
+//   // OPTIMIZATION: Reduced the parallax distance for smoother mobile scrolling
+//   const y = useTransform(scrollY, [0, 500], [0, 100]);
+//   const textY = useTransform(scrollY, [0, 300], [0, 80]);
+//   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
+//   // HIGH QUALITY DUMMY IMAGES (Unsplash: Wedding/Event Decor)
+//   const backgroundImages = [
+//         "/event2.jpg",
+//         "/event_hero_image_balanced.webp",
+//         "/event4.jpg",
+//         "/oie_911234R8vLZS8d.jpg",
+//         "/oie_9113458FxOUTGzI.jpg",
+//         "/oie_9113542DF0IVhHx.jpg",
+//         "/assets/uAINxsSQeVJ4.jpg",
+//     // "https://images.unsplash.com/photo-1519225468359-2996515c1e11?q=80&w=1920&auto=format&fit=crop", // Grand Hall
+//     // "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop", // Wedding Flowers
+//     // "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1920&auto=format&fit=crop", // Outdoor Decor
+//     // "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920&auto=format&fit=crop", // Lights
+//   ];
+
+//   const [currentImage, setCurrentImage] = useState(0);
+
+//   // Background Slideshow Logic
+//   useEffect(() => {
+//     const timer = setInterval(() => {
+//       setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
+//     }, 6000); // Change every 6 seconds
+//     return () => clearInterval(timer);
+//   }, []);
+
+//   return (
+//     <section id="home" className="relative h-screen w-full overflow-hidden bg-slate-950 flex items-center justify-center">
+      
+//       {/* 1. BACKGROUND LAYERS (Optimized for Mobile) */}
+//       <motion.div style={{ y }} className="absolute inset-0 z-0">
+//         <AnimatePresence mode='popLayout'>
+//           <motion.div
+//             key={currentImage}
+//             initial={{ opacity: 0, scale: 1.1 }}
+//             animate={{ opacity: 1, scale: 1 }}
+//             exit={{ opacity: 0 }}
+//             transition={{ duration: 2.5, ease: "easeOut" }} // Smooth Crossfade
+//             className="absolute inset-0 w-full h-full"
+//           >
+//             {/* The Ken Burns Effect Image */}
+//             <motion.img 
+//               src={backgroundImages[currentImage]}
+//               alt="Decoration"
+//               className="w-full h-full object-cover"
+//               // Hardware acceleration for lag-free zoom
+//               initial={{ scale: 1 }}
+//               animate={{ scale: 1.15 }}
+//               transition={{ duration: 10, ease: "linear" }}
+//             />
+//           </motion.div>
+//         </AnimatePresence>
+        
+//         {/* OPTIMIZED OVERLAY: Uses gradients instead of blurs for performance */}
+//         {/* Base Darkener */}
+//         <div className="absolute inset-0 bg-black/60" />
+        
+//         {/* Brand Color Tints (Gradient) */}
+//         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80" />
+//         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 via-transparent to-pink-900/30 mix-blend-overlay" />
+        
+//         {/* Texture (Optional - remove if still laggy, but usually fine) */}
+//         <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+//       </motion.div>
+
+
+//       {/* 2. MAIN CONTENT */}
+//       {/* Z-Index 20 to sit above background */}
+//       <motion.div 
+//         style={{ opacity, y: textY }}
+//         className="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-7xl mx-auto"
+//       >
+        
+//         {/* TOP TAGLINE */}
+        
+
+//         {/* MAIN TITLE: SHRI EVENTS */}
+//         <div className="relative mb-2 md:mb-6">
+//           {/* Performance Friendly Glow (Radial Gradient, not Blur) */}
+//           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-purple-600/20 blur-[60px] rounded-full -z-10" />
+          
+//           <motion.h1
+//             initial={{ opacity: 0, scale: 0.95 }}
+//             animate={{ opacity: 1, scale: 1 }}
+//             transition={{ duration: 1.2, ease: "easeOut" }}
+//             // Responsive Text Sizes: xs -> sm -> md -> lg
+//             className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-serif font-semibold leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-100 to-fuchsia-400 drop-shadow-xl"
+//           >
+//             Shri Events
+//           </motion.h1>
+//         </div>
+//             //bottom 
+//       <motion.div 
+//           initial={{ opacity: 0, y: -20 }}
+//           animate={{ opacity: 1, y: 0 }} 
+//           transition={{ duration: 1, delay: 0.2 }}
+//           className="flex items-center gap-3 md:gap-6 mb-4 md:mb-8"
+//         >
+//           {/* Decorative Lines */}
+//           <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-pink-400" />
+//           <span className="text-pink-200 text-[10px] md:text-sm font-medium uppercase tracking-[0.3em] text-nowrap">
+//             Decoration And Management
+//           </span>
+//           <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-pink-400" />
+//         </motion.div>
+
+//         {/* MIDDLE TAGLINE: Celebrate Lovely Moment */}
+//         <motion.h2 
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 0.5, duration: 1 }}
+//           className="text-2xl sm:text-3xl md:text-5xl font-light text-white drop-shadow-lg"
+//         >
+//           Celebrate Lovely Moment's With Us
+//         </motion.h2>
+
+//         {/* BOTTOM EMOTIONAL TAGLINE */}
+//         <motion.p 
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           transition={{ delay: 0.8, duration: 1 }}
+//           className="mt-3 md:mt-6 text-base md:text-2xl text-pink-100/90 font-serif italic"
+//         >
+//           " We make your smile "
+//         </motion.p>
+
+//         {/* ACTION BUTTONS */}
+//         <motion.div 
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 1 }}
+//           className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto px-6 sm:px-0"
+//         >
+//           <a 
+//             href="#services"
+//             className="w-full sm:w-auto px-8 py-3 md:py-4 bg-gradient-to-r from-fuchsia-700 to-purple-800 text-white font-semibold text-base md:text-lg rounded-full shadow-lg shadow-purple-900/40 active:scale-95 transition-transform"
+//           >
+//             Explore Services
+//           </a>
+//           <a 
+//             href="tel:+919739220735"
+//             className="w-full sm:w-auto px-8 py-3 md:py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium text-base md:text-lg rounded-full active:bg-white/20 transition-colors"
+//           >
+//             Call Now
+//           </a>
+//         </motion.div>
+
+//       </motion.div>
+
+//       {/* SCROLL INDICATOR */}
+//       <motion.div 
+//         initial={{ opacity: 0 }}
+//         animate={{ opacity: 1, y: [0, 10, 0] }} 
+//         transition={{ delay: 2, duration: 2, repeat: Infinity }} 
+//         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+//       >
+//         <span className="text-[10px] uppercase tracking-[0.2em] text-pink-200/60">Scroll</span>
+//         <ChevronRight className="w-5 h-5 text-pink-300 rotate-90" />
+//       </motion.div>
+//     </section>
+//   );
+// }
 function Hero() {
   const { scrollY } = useScroll();
   
-  // OPTIMIZATION: Reduced the parallax distance for smoother mobile scrolling
+  // OPTIMIZATION: Reduced parallax for smoother mobile experience
   const y = useTransform(scrollY, [0, 500], [0, 100]);
   const textY = useTransform(scrollY, [0, 300], [0, 80]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-  // HIGH QUALITY DUMMY IMAGES (Unsplash: Wedding/Event Decor)
+  // Image Array containing client photos and balanced fallbacks
   const backgroundImages = [
-        "/event2.jpg",
-        "/event_hero_image_balanced.webp",
-        "/event4.jpg",
-        "/oie_911234R8vLZS8d.jpg",
-        "/oie_9113458FxOUTGzI.jpg",
-        "/oie_9113542DF0IVhHx.jpg",
-        "/assets/uAINxsSQeVJ4.jpg",
-    // "https://images.unsplash.com/photo-1519225468359-2996515c1e11?q=80&w=1920&auto=format&fit=crop", // Grand Hall
-    // "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop", // Wedding Flowers
-    // "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1920&auto=format&fit=crop", // Outdoor Decor
-    // "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920&auto=format&fit=crop", // Lights
+    "/event2.jpg",
+    "/event_hero_image_balanced.webp",
+    "/event4.jpg",
+    "/oie_911234R8vLZS8d.jpg",
+    "/oie_9113458FxOUTGzI.jpg",
+    "/oie_9113542DF0IVhHx.jpg",
+    "/assets/uAINxsSQeVJ4.jpg",
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -2183,79 +2350,66 @@ function Hero() {
     return () => clearInterval(timer);
   }, []);
 
+  // Circular Text Logic for the badge
+  const circularText = "Shri.Events.Decor • ";
+  const characters = circularText.split("");
+  const radius = 45; // Adjusts how far out the text sits
+
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden bg-slate-950 flex items-center justify-center">
       
-      {/* 1. BACKGROUND LAYERS (Optimized for Mobile) */}
+      {/* =========================================
+          1. BACKGROUND LAYERS
+      ========================================= */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
         <AnimatePresence mode='popLayout'>
           <motion.div
             key={currentImage}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 2.5, ease: "easeOut" }} // Smooth Crossfade
+            transition={{ duration: 2.5, ease: "easeInOut" }}
             className="absolute inset-0 w-full h-full"
           >
-            {/* The Ken Burns Effect Image */}
+            {/* Ken Burns Effect Image */}
             <motion.img 
               src={backgroundImages[currentImage]}
-              alt="Decoration"
+              alt="Decoration Background"
               className="w-full h-full object-cover"
-              // Hardware acceleration for lag-free zoom
+              // Hardware acceleration for smooth zoom
               initial={{ scale: 1 }}
               animate={{ scale: 1.15 }}
-              transition={{ duration: 10, ease: "linear" }}
+              transition={{ duration: 12, ease: "linear" }}
             />
           </motion.div>
         </AnimatePresence>
         
-        {/* OPTIMIZED OVERLAY: Uses gradients instead of blurs for performance */}
-        {/* Base Darkener */}
-        <div className="absolute inset-0 bg-black/60" />
+        {/* OPTIMIZED OVERLAYS - BRIGHTENED AS REQUESTED */}
+        {/* Base Darkener - Reduced opacity significantly so images are clearer */}
+        <div className="absolute inset-0 bg-black/30 md:bg-black/40" />
         
-        {/* Brand Color Tints (Gradient) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 via-transparent to-pink-900/30 mix-blend-overlay" />
-        
-        {/* Texture (Optional - remove if still laggy, but usually fine) */}
-        <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+        {/* Brand Color Tints (Subtle Gradients) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
+        {/* Purple tint mix-blend for brand identity */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20 mix-blend-overlay" />
       </motion.div>
 
 
-      {/* 2. MAIN CONTENT */}
-      {/* Z-Index 20 to sit above background */}
+      {/* =========================================
+          2. MAIN CENTER CONTENT
+      ========================================= */}
       <motion.div 
         style={{ opacity, y: textY }}
-        className="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-7xl mx-auto"
+        className="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-7xl mx-auto mt-[-60px] md:mt-0"
       >
         
         {/* TOP TAGLINE */}
-        
-
-        {/* MAIN TITLE: SHRI EVENTS */}
-        <div className="relative mb-2 md:mb-6">
-          {/* Performance Friendly Glow (Radial Gradient, not Blur) */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-purple-600/20 blur-[60px] rounded-full -z-10" />
-          
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            // Responsive Text Sizes: xs -> sm -> md -> lg
-            className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-serif font-semibold leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-100 to-fuchsia-400 drop-shadow-xl"
-          >
-            Shri Events
-          </motion.h1>
-        </div>
-            //bottom 
-      <motion.div 
+        <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 1, delay: 0.2 }}
           className="flex items-center gap-3 md:gap-6 mb-4 md:mb-8"
         >
-          {/* Decorative Lines */}
           <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-pink-400" />
           <span className="text-pink-200 text-[10px] md:text-sm font-medium uppercase tracking-[0.3em] text-nowrap">
             Decoration And Management
@@ -2263,12 +2417,28 @@ function Hero() {
           <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-pink-400" />
         </motion.div>
 
-        {/* MIDDLE TAGLINE: Celebrate Lovely Moment */}
+        {/* MAIN TITLE */}
+        <div className="relative mb-2 md:mb-6">
+          {/* Performance Friendly Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-purple-600/20 blur-[60px] rounded-full -z-10" />
+          
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            // Highly Responsive Text Sizes
+            className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-serif font-semibold leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-100 to-fuchsia-400 drop-shadow-xl"
+          >
+            Shri Events
+          </motion.h1>
+        </div>
+
+        {/* MIDDLE TAGLINE */}
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="text-2xl sm:text-3xl md:text-5xl font-light text-white drop-shadow-lg"
+          className="text-xl sm:text-3xl md:text-5xl font-light text-white drop-shadow-lg px-4"
         >
           Celebrate Lovely Moment's With Us
         </motion.h2>
@@ -2288,7 +2458,7 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
-          className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto px-6 sm:px-0"
+          className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto px-8 sm:px-0"
         >
           <a 
             href="#services"
@@ -2303,15 +2473,71 @@ function Hero() {
             Call Now
           </a>
         </motion.div>
-
       </motion.div>
 
-      {/* SCROLL INDICATOR */}
+
+      {/* =========================================
+          3. BOTTOM LEFT ANIMATED LOGO BADGE
+      ========================================= */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        // Positioning: Bottom Left, responsive margins
+        className="absolute bottom-4 left-4 md:bottom-8 md:left-8 z-30"
+      >
+        {/* Container for Video + Text Ring. Responsive sizing. */}
+        <div className="relative w-[70px] h-[70px] md:w-[120px] md:h-[120px] flex items-center justify-center">
+          
+          {/* ROTATING CIRCULAR TEXT RING */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none"
+          >
+            {characters.map((char, i) => (
+              <span
+                key={i}
+                style={{
+                  position: "absolute",
+                  // Magic number to push text to the edge based on container size
+                  height: `100%`, 
+                  transform: `rotate(${i * (360 / characters.length)}deg)`,
+                  transformOrigin: "0 50%", // Rotate around center point
+                  left: '50%',
+                }}
+                className="text-pink-300/80 font-serif uppercase text-[6px] md:text-[10px] font-medium tracking-widest"
+              >
+               <span style={{ position: 'absolute', top: -5, left: '-50%' }}>{char}</span>
+              </span>
+            ))}
+          </motion.div>
+
+          {/* CENTRAL CIRCULAR VIDEO */}
+          <div className="relative w-full h-full rounded-full overflow-hidden border-[1px] border-purple-400/30 z-10 bg-black/40 backdrop-blur-sm p-1 md:p-2 scale-75">
+            <video
+              src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-contain rounded-full"
+              style={{ background: "transparent" }}
+            />
+          </div>
+        </div>
+      </motion.div>
+
+
+      {/* =========================================
+          4. SCROLL INDICATOR
+      ========================================= */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }} 
         transition={{ delay: 2, duration: 2, repeat: Infinity }} 
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+        // Adjusted bottom position to not overlap logo on small screens
+        className="absolute bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
       >
         <span className="text-[10px] uppercase tracking-[0.2em] text-pink-200/60">Scroll</span>
         <ChevronRight className="w-5 h-5 text-pink-300 rotate-90" />
