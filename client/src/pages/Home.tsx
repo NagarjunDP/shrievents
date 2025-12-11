@@ -2154,286 +2154,165 @@ if (typeof window !== 'undefined') {
 //royal grand
 // ==== FINAL GRAND HERO – CLIENT WILL FALL IN LOVE INSTANTLY ====
 // ==== FINAL GRAND HERO – FIXED & PERFECT ====
-// function Hero() {
-//   const { scrollY } = useScroll();
-//   const y = useTransform(scrollY, [0, 500], [0, 150]);
-//   const opacity = useTransform(scrollY, [0, 400], [1, 0.75]);
-
-//   return (
-//     <section id="home" className="relative h-screen overflow-hidden">
-//       {/* Parallax Background */}
-//       <motion.div style={{ y }} className="absolute inset-0 -z-10">
-//         <img
-//           src="/event_hero_image_violet_brighter.webp"
-//           alt="Shri Events"
-//           className="w-full h-full object-cover"
-//         />
-//         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-purple-900/40 to-transparent" />
-//       </motion.div>
-
-//       {/* Floating Logo (Bottom Left) */}
-//       <div className="absolute left-4 bottom-6 md:left-16 md:bottom-16 z-30">
-//         <div className="bg-black/70 backdrop-blur-md rounded-full shadow-2xl p-3 md:p-6 border border-amber-400/30">
-//           <video
-//             src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
-//             autoPlay
-//             loop
-//             muted
-//             playsInline
-//             className="w-12 h-12 md:w-32 md:h-32 object-contain"
-//           />
-//         </div>
-//       </div>
-
-//       {/* MAIN GRAND CONTENT */}
-//       <motion.div
-//         style={{ opacity }}
-//         className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
-//       >
-//         {/* Subtle Falling Sparkles */}
-//         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-//           {[...Array(20)].map((_, i) => (
-//             <motion.div
-//               key={i}
-//               className="absolute w-1 h-1 bg-amber-300 rounded-full opacity-70"
-//               initial={{ y: -100 }}
-//               animate={{
-//                 y: "110vh",
-//                 x: `${Math.random() * 100}vw`,
-//               }}
-//               transition={{
-//                 duration: Math.random() * 10 + 10,
-//                 repeat: Infinity,
-//                 delay: Math.random() * 5,
-//                 ease: "linear",
-//               }}
-//             />
-//           ))}
-//         </div>
-
-//         {/* GRAND BUSINESS NAME */}
-//         <motion.div
-//           initial={{ opacity: 0, scale: 0.7, y: 100 }}
-//           animate={{ opacity: 1, scale: 1, y: 0 }}
-//           transition={{ duration: 1.8, ease: "easeOut" }}
-//           className="mb-8 md:mb-12 relative"
-//         >
-//           {/* Golden Glow Aura */}
-//           <div className="absolute -inset-4 bg-gradient-to-r from-amber-400/30 via-yellow-300/20 to-amber-400/30 blur-3xl rounded-full scale-150 animate-pulse-slow" />
-
-//           <h1 className="
-//             text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem]
-//             font-black tracking-tight leading-none
-//             bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100
-//             bg-clip-text text-transparent
-//             drop-shadow-2xl
-//             relative z-10
-//             animate-title-glow
-//           ">
-//             Shri Events
-//           </h1>
-
-//           {/* Royal Subtitle */}
-//           <div className="flex items-center justify-center gap-10 mt-8">
-//             <motion.div
-//               initial={{ width: 0 }}
-//               animate={{ width: "140px" }}
-//               transition={{ duration: 1.5, delay: 1 }}
-//               className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"
-//             />
-//             <motion.p
-//               initial={{ opacity: 0, y: 20 }}
-//               animate={{ opacity: 1, y: 0 }}
-//               transition={{ delay: 1.2, duration: 1 }}
-//               className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase"
-//             >
-//               Decoration and Management
-//             </motion.p>
-//             <motion.div
-//               initial={{ width: 0 }}
-//               animate={{ width: "140px" }}
-//               transition={{ duration: 1.5, delay: 1 }}
-//               className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent"
-//             />
-//           </div>
-//         </motion.div>
-
-//         <motion.h2
-//           initial={{ opacity: 0, y: 40 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ delay: 1.6, duration: 1.4 }}
-//           className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8"
-//         >
-//           Celebrate Lovely Moments
-//         </motion.h2>
-
-//         <motion.p
-//           initial={{ opacity: 0 }}
-//           animate={{ opacity: 1 }}
-//           transition={{ delay: 2, duration: 1 }}
-//           className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light"
-//         >
-//           With us, every smile shines brighter than ever
-//         </motion.p>
-
-//         {/* Royal Buttons */}
-//         <motion.div
-//           initial={{ opacity: 0, y: 50 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ delay: 2.3, duration: 1 }}
-//           className="flex flex-col sm:flex-row gap-6"
-//         >
-//           <a
-//             href="#services"
-//             className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:shadow-amber-400/60 hover:scale-105 transition-all duration-300 border border-amber-300"
-//           >
-//             Explore Services
-//           </a>
-//           <a
-//             href={`tel:${PHONE_NUMBER}`}
-//             className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all"
-//           >
-//             Call Now +91 97392 20735
-//           </a>
-//         </motion.div>
-//       </motion.div>
-
-//       {/* Scroll Indicator */}
-//       <motion.div
-//         animate={{ y: [0, 15, 0] }}
-//         transition={{ duration: 2, repeat: Infinity }}
-//         className="absolute bottom-10 left-1/2 -translate-x-1/2"
-//       >
-//         <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
-//       </motion.div>
-//     </section>
-//   );
-// }
-
-//update fucniton hero 
-// ==== FINAL SMOOTH + GRAND HERO – PERFECT FOR MOBILE & DESKTOP ====
 function Hero() {
   const { scrollY } = useScroll();
-  const yBg = useTransform(scrollY, [0, 500], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0.85]);
-
-  // Very light floating particles (only 8)
-  const particles = [...Array(8)];
-  // Elegant balloons (only 6 – soft floating animation)
-  const balloons = [...Array(6)];
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0.75]);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950 flex items-center justify-center">
-      {/* Parallax Background Layer */}
-      <motion.div
-        style={{ y: yBg, opacity }}
-        className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center opacity-30"
-      />
-
-      {/* Subtle Sparkles / Floating Particles */}
-      {particles.map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-yellow-300/30 rounded-full blur-sm"
-          animate={{
-            y: [0, -30, 10, -20, 0],
-            x: [0, 15, -20, 10, 0],
-            opacity: [0.1, 0.4, 0.6, 0.4, 0.1],
-          }}
-          transition={{
-            duration: 15 + i * 2,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          style={{
-            left: `${10 + i * 12}%`,
-            top: `${20 + i * 8}%`,
-          }}
+    <section id="home" className="relative h-screen overflow-hidden">
+      {/* Parallax Background */}
+      <motion.div style={{ y }} className="absolute inset-0 -z-10">
+        <img
+          src="/event_hero_image_violet_brighter.webp"
+          alt="Shri Events"
+          className="w-full h-full object-cover"
         />
-      ))}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-purple-900/40 to-transparent" />
+      </motion.div>
 
-      {/* Floating Balloons – Elegant & Classy */}
-      {balloons.map((_, i) => (
-        <motion.div
-          key={`balloon-${i}`}
-          className="absolute"
-          animate={{
-            y: [0, -40, -20, -50, 0],
-            rotate: [0, 5, -5, 3, 0],
-          }}
-          transition={{
-            duration: 18 + i * 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{
-            left: `${15 + i * 13}%`,
-            top: `${30 + i * 10}%`,
-          }}
-        >
-          <div className={`w-16 h-20 rounded-full opacity-70 shadow-2xl
-            ${i % 3 === 0 ? "bg-rose-400" : i % 3 === 1 ? "bg-amber-400" : "bg-purple-400"}
-          `} />
-          <div className="w-px h-32 bg-gradient-to-b from-white/30 to-transparent mx-auto -mt-2" />
-        </motion.div>
-      ))}
+      {/* Floating Logo (Bottom Left) */}
+      <div className="absolute left-4 bottom-6 md:left-16 md:bottom-16 z-30">
+        <div className="bg-black/70 backdrop-blur-md rounded-full shadow-2xl p-3 md:p-6 border border-amber-400/30">
+          <video
+            src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-12 h-12 md:w-32 md:h-32 object-contain"
+          />
+        </div>
+      </div>
 
-      {/* Main Content */}
+      {/* MAIN GRAND CONTENT */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+        style={{ opacity }}
+        className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
       >
-        {/* Company Name – Royal & Elegant */}
-        <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-4">
-          <span className="text-white drop-shadow-2xl">Shri</span>
-          <span className="text-amber-400 drop-shadow-2xl"> Events</span>
-        </h1>
+        {/* Subtle Falling Sparkles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-amber-300 rounded-full opacity-70"
+              initial={{ y: -100 }}
+              animate={{
+                y: "110vh",
+                x: `${Math.random() * 100}vw`,
+              }}
+              transition={{
+                duration: Math.random() * 10 + 10,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "linear",
+              }}
+            />
+          ))}
+        </div>
 
-        {/* Subtitle */}
-        <p className="text-2xl md:text-4xl text-amber-100 font-light tracking-wide mb-3">
-          Decoration & Management
-        </p>
+        {/* GRAND BUSINESS NAME */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.7, y: 100 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
+          className="mb-8 md:mb-12 relative"
+        >
+          {/* Golden Glow Aura */}
+          <div className="absolute -inset-4 bg-gradient-to-r from-amber-400/30 via-yellow-300/20 to-amber-400/30 blur-3xl rounded-full scale-150 animate-pulse-slow" />
 
-        {/* Tagline */}
-        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <h1 className="
+            text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem]
+            font-black tracking-tight leading-none
+            bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100
+            bg-clip-text text-transparent
+            drop-shadow-2xl
+            relative z-10
+            animate-title-glow
+          ">
+            Shri Events
+          </h1>
+
+          {/* Royal Subtitle */}
+          <div className="flex items-center justify-center gap-10 mt-8">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "140px" }}
+              transition={{ duration: 1.5, delay: 1 }}
+              className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"
+            />
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 1 }}
+              className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase"
+            >
+              Decoration and Management
+            </motion.p>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "140px" }}
+              transition={{ duration: 1.5, delay: 1 }}
+              className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent"
+            />
+          </div>
+        </motion.div>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.6, duration: 1.4 }}
+          className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8"
+        >
           Celebrate Lovely Moments
-        </p>
-        <p className="text-sm md:text-base text-gray-400 max-w-3xl mx-auto mb-12">
-          With us, every smile shines brighter than ever
-        </p>
+        </motion.h2>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light"
+        >
+          With us, every smile shines brighter than ever
+        </motion.p>
+
+        {/* Royal Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.3, duration: 1 }}
+          className="flex flex-col sm:flex-row gap-6"
+        >
           <a
             href="#services"
-            className="px-8 py-4 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-full transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+            className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:shadow-amber-400/60 hover:scale-105 transition-all duration-300 border border-amber-300"
           >
             Explore Services
           </a>
           <a
-            href="tel:+919876543210"
-            className="px-8 py-4 border-2 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-slate-900 font-semibold rounded-full transition-all duration-300 backdrop-blur-sm"
+            href={`tel:${PHONE_NUMBER}`}
+            className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all"
           >
-            Call Now
+            Call Now +91 97392 20735
           </a>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
-          <div className="w-6 h-10 border-2 border-amber-400/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-amber-400/60 rounded-full mt-2 animate-bounce" />
-          </div>
         </motion.div>
+      </motion.div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        animate={{ y: [0, 15, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+      >
+        <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
       </motion.div>
     </section>
   );
 }
+
+//update fucniton hero 
+// ==== FINAL SMOOTH + GRAND HERO – PERFECT FOR MOBILE & DESKTOP ====
+
 
 
 {/* ========== PROFESSIONAL SERVICES GRID SECTION ========== */}
