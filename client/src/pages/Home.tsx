@@ -2322,401 +2322,6 @@ if (typeof window !== 'undefined') {
 //   );
 // }
 //crazy thank you
-// function Hero() {
-//   const { scrollY } = useScroll();
-  
-//   // OPTIMIZATION: Reduced parallax for smoother mobile experience
-//   const y = useTransform(scrollY, [0, 500], [0, 100]);
-//   const textY = useTransform(scrollY, [0, 300], [0, 80]);
-//   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-
-//   // Image Array containing client photos and balanced fallbacks
-//   const backgroundImages = [
-//     "/event2.jpg",
-//     "/event_hero_image_balanced.webp",
-//     "/event4.jpg",
-//     "/oie_911234R8vLZS8d.jpg",
-//     "/oie_9113458FxOUTGzI.jpg",
-//     "/oie_9113542DF0IVhHx.jpg",
-//     "/assets/uAINxsSQeVJ4.jpg",
-//   ];
-
-//   const [currentImage, setCurrentImage] = useState(0);
-
-//   // Background Slideshow Logic
-//   useEffect(() => {
-//     const timer = setInterval(() => {
-//       setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
-//     }, 6000); // Change every 6 seconds
-//     return () => clearInterval(timer);
-//   }, []);
-
-//   // Circular Text Logic for the badge
-//   const circularText = "Shri.Events.Decor • ";
-//   const characters = circularText.split("");
-//   const radius = 45; // Adjusts how far out the text sits
-
-//   return (
-//     <section id="home" className="relative h-screen w-full overflow-hidden bg-slate-950 flex items-center justify-center">
-      
-//       {/* =========================================
-//           1. BACKGROUND LAYERS
-//       ========================================= */}
-//       <motion.div style={{ y }} className="absolute inset-0 z-0">
-//         <AnimatePresence mode='popLayout'>
-//           <motion.div
-//             key={currentImage}
-//             initial={{ opacity: 0 }}
-//             animate={{ opacity: 1 }}
-//             exit={{ opacity: 0 }}
-//             transition={{ duration: 2.5, ease: "easeInOut" }}
-//             className="absolute inset-0 w-full h-full"
-//           >
-//             {/* Ken Burns Effect Image */}
-//             <motion.img 
-//               src={backgroundImages[currentImage]}
-//               alt="Decoration Background"
-//               className="w-full h-full object-cover"
-//               // Hardware acceleration for smooth zoom
-//               initial={{ scale: 1 }}
-//               animate={{ scale: 1.15 }}
-//               transition={{ duration: 12, ease: "linear" }}
-//             />
-//           </motion.div>
-//         </AnimatePresence>
-        
-//         {/* OPTIMIZED OVERLAYS - BRIGHTENED AS REQUESTED */}
-//         {/* Base Darkener - Reduced opacity significantly so images are clearer */}
-//         <div className="absolute inset-0 bg-black/30 md:bg-black/40" />
-        
-//         {/* Brand Color Tints (Subtle Gradients) */}
-//         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
-//         {/* Purple tint mix-blend for brand identity */}
-//         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20 mix-blend-overlay" />
-//       </motion.div>
-
-
-//       {/* =========================================
-//           2. MAIN CENTER CONTENT
-//       ========================================= */}
-//       <motion.div 
-//         style={{ opacity, y: textY }}
-//         className="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-7xl mx-auto mt-[-60px] md:mt-0"
-//       >
-        
-//         {/* TOP TAGLINE */}
-//         <motion.div 
-//           initial={{ opacity: 0, y: -20 }}
-//           animate={{ opacity: 1, y: 0 }} 
-//           transition={{ duration: 1, delay: 0.2 }}
-//           className="flex items-center gap-3 md:gap-6 mb-4 md:mb-8"
-//         >
-//           <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-pink-400" />
-//           <span className="text-pink-200 text-[10px] md:text-sm font-medium uppercase tracking-[0.3em] text-nowrap">
-//             Decoration And Management
-//           </span>
-//           <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-pink-400" />
-//         </motion.div>
-
-//         {/* MAIN TITLE */}
-//         <div className="relative mb-2 md:mb-6">
-//           {/* Performance Friendly Glow */}
-//           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-purple-600/20 blur-[60px] rounded-full -z-10" />
-          
-//           <motion.h1
-//             initial={{ opacity: 0, scale: 0.95 }}
-//             animate={{ opacity: 1, scale: 1 }}
-//             transition={{ duration: 1.2, ease: "easeOut" }}
-//             // Highly Responsive Text Sizes
-//             className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-serif font-semibold leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-100 to-fuchsia-400 drop-shadow-xl"
-//           >
-//             Shri Events
-//           </motion.h1>
-//         </div>
-
-//         {/* MIDDLE TAGLINE */}
-//         <motion.h2 
-//           initial={{ opacity: 0, y: 20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ delay: 0.5, duration: 1 }}
-//           className="text-xl sm:text-3xl md:text-5xl font-light text-white drop-shadow-lg px-4"
-//         >
-//           Celebrate Lovely Moment's With Us
-//         </motion.h2>
-
-//         {/* BOTTOM EMOTIONAL TAGLINE */}
-//         <motion.p 
-//           initial={{ opacity: 0 }}
-//           animate={{ opacity: 1 }}
-//           transition={{ delay: 0.8, duration: 1 }}
-//           className="mt-3 md:mt-6 text-base md:text-2xl text-pink-100/90 font-serif italic"
-//         >
-//           " We make your smile "
-//         </motion.p>
-
-//         {/* ACTION BUTTONS */}
-//         <motion.div 
-//           initial={{ opacity: 0, y: 20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ delay: 1 }}
-//           className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto px-8 sm:px-0"
-//         >
-//           <a 
-//             href="#services"
-//             className="w-full sm:w-auto px-8 py-3 md:py-4 bg-gradient-to-r from-fuchsia-700 to-purple-800 text-white font-semibold text-base md:text-lg rounded-full shadow-lg shadow-purple-900/40 active:scale-95 transition-transform"
-//           >
-//             Explore Services
-//           </a>
-//           <a 
-//             href="tel:+919739220735"
-//             className="w-full sm:w-auto px-8 py-3 md:py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium text-base md:text-lg rounded-full active:bg-white/20 transition-colors"
-//           >
-//             Call Now
-//           </a>
-//         </motion.div>
-//       </motion.div>
-
-
-//       {/* =========================================
-//           3. BOTTOM LEFT ANIMATED LOGO BADGE
-//       ========================================= */}
-//       <motion.div 
-//         initial={{ opacity: 0, scale: 0.8 }}
-//         animate={{ opacity: 1, scale: 1 }}
-//         transition={{ delay: 1.5, duration: 1 }}
-//         // Positioning: Bottom Left, responsive margins
-//         className="absolute bottom-4 left-4 md:bottom-8 md:left-8 z-30"
-//       >
-//         {/* Container for Video + Text Ring. Responsive sizing. */}
-//         <div className="relative w-[70px] h-[70px] md:w-[120px] md:h-[120px] flex items-center justify-center">
-          
-//           {/* ROTATING CIRCULAR TEXT RING */}
-//           <motion.div
-//             animate={{ rotate: 360 }}
-//             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-//             className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none"
-//           >
-//             {characters.map((char, i) => (
-//               <span
-//                 key={i}
-//                 style={{
-//                   position: "absolute",
-//                   // Magic number to push text to the edge based on container size
-//                   height: `100%`, 
-//                   transform: `rotate(${i * (360 / characters.length)}deg)`,
-//                   transformOrigin: "0 50%", // Rotate around center point
-//                   left: '50%',
-//                 }}
-//                 className="text-pink-300/80 font-serif uppercase text-[6px] md:text-[10px] font-medium tracking-widest"
-//               >
-//                <span style={{ position: 'absolute', top: -5, left: '-50%' }}>{char}</span>
-//               </span>
-//             ))}
-//           </motion.div>
-
-//           {/* CENTRAL CIRCULAR VIDEO */}
-//           <div className="relative w-full h-full rounded-full overflow-hidden border-[1px] border-purple-400/30 z-10 bg-black/40 backdrop-blur-sm p-1 md:p-2 scale-75">
-//             <video
-//               src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
-//               autoPlay
-//               loop
-//               muted
-//               playsInline
-//               className="w-full h-full object-contain rounded-full"
-//               style={{ background: "transparent" }}
-//             />
-//           </div>
-//         </div>
-//       </motion.div>
-
-
-//       {/* =========================================
-//           4. SCROLL INDICATOR
-//       ========================================= */}
-//       <motion.div 
-//         initial={{ opacity: 0 }}
-//         animate={{ opacity: 1, y: [0, 10, 0] }} 
-//         transition={{ delay: 2, duration: 2, repeat: Infinity }} 
-//         // Adjusted bottom position to not overlap logo on small screens
-//         className="absolute bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
-//       >
-//         <span className="text-[10px] uppercase tracking-[0.2em] text-pink-200/60">Scroll</span>
-//         <ChevronRight className="w-5 h-5 text-pink-300 rotate-90" />
-//       </motion.div>
-//     </section>
-//   );
-// }
-//t00 bright
-// function Hero() {
-//   const { scrollY } = useScroll();
-//   const y = useTransform(scrollY, [0, 500], [0, 150]);
-//   const opacity = useTransform(scrollY, [0, 400], [1, 0.75]);
-
-//   return (
-//     <section id="home" className="relative h-screen overflow-hidden">
-//       {/* Parallax Background */}
-//       <motion.div style={{ y }} className="absolute inset-0 -z-10">
-//         <img
-//           src="/event_hero_image_violet_brighter.webp"
-//           alt="Shri Events"
-//           className="w-full h-full object-cover"
-//         />
-//         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-purple-900/40 to-transparent" />
-//       </motion.div>
-
-//       {/* Floating Logo */}
-//       <div className="absolute left-4 bottom-6 md:left-16 md:bottom-16 z-30">
-//         <div className="bg-black/70 backdrop-blur-md rounded-full shadow-2xl p-3 md:p-6 border border-amber-400/30">
-//           <video
-//             src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
-//             autoPlay loop muted playsInline
-//             className="w-12 h-12 md:w-32 md:h-32 object-contain"
-//           />
-//         </div>
-//       </div>
-
-//       {/* 3 SINGLE BUTTERFLIES WITH SOFT TRAILS – Calm & Elegant */}
-//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-//         {/* Butterfly 1 – Top Left */}
-//         <motion.div
-//           initial={{ x: -100, y: 100 }}
-//           animate={{
-//             x: [null, 100, -80, 120],
-//             y: [null, -60, -100, -40],
-//           }}
-//           transition={{
-//             duration: 32,
-//             repeat: Infinity,
-//             ease: "easeInOut",
-//           }}
-//           className="absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 opacity-60"
-//         >
-//           <motion.div
-//             className="absolute inset-0 blur-xl opacity-30 bg-gradient-to-r from-purple-400/20 via-blue-400/10 to-transparent"
-//             animate={{ scale: [1, 1.4, 1] }}
-//             transition={{ duration: 4, repeat: Infinity }}
-//           />
-//           <ButterflyAnimation />
-//         </motion.div>
-
-//         {/* Butterfly 2 – Top Right */}
-//         <motion.div
-//           initial={{ x: 100, y: 80 }}
-//           animate={{
-//             x: [null, -120, 80, -100],
-//             y: [null, -80, -40, -100],
-//           }}
-//           transition={{
-//             duration: 38,
-//             repeat: Infinity,
-//             ease: "easeInOut",
-//             delay: 6,
-//           }}
-//           className="absolute top-16 right-8 w-56 h-56 md:w-72 md:h-72 opacity-55 hidden md:block"
-//         >
-//           <motion.div
-//             className="absolute inset-0 blur-2xl opacity-25 bg-gradient-to-l from-blue-400/20 via-purple-400/10 to-transparent"
-//             animate={{ scale: [1, 1.5, 1] }}
-//             transition={{ duration: 5, repeat: Infinity }}
-//           />
-//           <ButterflyAnimation />
-//         </motion.div>
-
-//         {/* Butterfly 3 – Bottom Center */}
-//         <motion.div
-//           initial={{ x: 0, y: 200 }}
-//           animate={{
-//             x: [-80, 100, -60, 80],
-//             y: [null, -100, -60, -120],
-//           }}
-//           transition={{
-//             duration: 42,
-//             repeat: Infinity,
-//             ease: "easeInOut",
-//             delay: 12,
-//           }}
-//           className="absolute bottom-40 left-1/2 -translate-x-1/2 w-48 h-48 md:w-60 md:h-60 opacity-50 hidden lg:block"
-//         >
-//           <motion.div
-//             className="absolute inset-0 blur-xl opacity-20 bg-gradient-to-t from-purple-400/15 to-transparent"
-//             animate={{ scale: [1, 1.6, 1] }}
-//             transition={{ duration: 6, repeat: Infinity }}
-//           />
-//           <ButterflyAnimation />
-//         </motion.div>
-//       </div>
-
-//       {/* Very Subtle Sparkles (almost invisible) */}
-//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-//         {[...Array(6)].map((_, i) => (
-//           <motion.div
-//             key={i}
-//             className="absolute w-1 h-1 bg-white/20 rounded-full blur-sm"
-//             initial={{ y: -50 }}
-//             animate={{ y: "110vh" }}
-//             transition={{
-//               duration: 25 + i * 4,
-//               repeat: Infinity,
-//               delay: i * 3,
-//               ease: "linear",
-//             }}
-//             style={{ left: `${15 + i * 13}%` }}
-//           />
-//         ))}
-//       </div>
-
-//       {/* MAIN CONTENT – Clean, Royal, Focused */}
-//       <motion.div
-//         style={{ opacity }}
-//         className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
-//       >
-//         <motion.div
-//           initial={{ opacity: 0, scale: 0.8, y: 100 }}
-//           animate={{ opacity: 1, scale: 1, y: 0 }}
-//           transition={{ duration: 1.8, ease: "easeOut" }}
-//           className="mb-12 relative"
-//         >
-//           <div className="absolute -inset-8 bg-gradient-to-r from-amber-400/15 via-yellow-300/10 to-amber-400/15 blur-3xl rounded-full animate-pulse-slow opacity-70" />
-          
-//           <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black tracking-tight leading-none bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100 bg-clip-text text-transparent drop-shadow-2xl">
-//             Shri Events
-//           </h1>
-
-//           <div className="flex items-center justify-center gap-10 mt-8">
-//             <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
-//             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }} className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase">
-//               Decoration and Management
-//             </motion.p>
-//             <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent" />
-//           </div>
-//         </motion.div>
-
-//         <motion.h2 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6 }} className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8">
-//           Celebrate Lovely Moments
-//         </motion.h2>
-
-//         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light">
-//           With us, every smile shines brighter than ever
-//         </motion.p>
-
-//         <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.3 }} className="flex flex-col sm:flex-row gap-6">
-//           <a href="#services" className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border border-amber-300">
-//             Explore Services
-//           </a>
-//           <a href={`tel:${PHONE_NUMBER}`} className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all">
-//             Call Now +91 97392 20735
-//           </a>
-//         </motion.div>
-//       </motion.div>
-
-//       {/* Scroll Indicator */}
-//       <motion.div animate={{ y: [0, 15, 0] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-10 left-1/2 -translate-x-1/2">
-//         <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
-//       </motion.div>
-//     </section>
-//   );
-// }
-//upgrade to crazy
 function Hero() {
   const { scrollY } = useScroll();
   
@@ -2725,11 +2330,15 @@ function Hero() {
   const textY = useTransform(scrollY, [0, 300], [0, 80]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
-  // Image Array
+  // Image Array containing client photos and balanced fallbacks
   const backgroundImages = [
     "/event2.jpg",
-    "/event_hero_image_balanced.webp",
+    "/event3.jpg",
     "/event4.jpg",
+        "/oie_9113025Zn4zvO9R.jpg",
+        "/WhatsApp Image 2025-12-08 at 23.02.30.jpeg",
+        "/WhatsApp Image 2025-12-08 at 23.08.27 (1).jpeg",
+        "/event18.webp",
     "/oie_911234R8vLZS8d.jpg",
     "/oie_9113458FxOUTGzI.jpg",
     "/oie_9113542DF0IVhHx.jpg",
@@ -2742,13 +2351,14 @@ function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
-    }, 6000);
+    }, 6000); // Change every 6 seconds
     return () => clearInterval(timer);
   }, []);
 
-  // Circular Text Logic
+  // Circular Text Logic for the badge
   const circularText = "Shri.Events.Decor • ";
   const characters = circularText.split("");
+  const radius = 45; // Adjusts how far out the text sits
 
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden bg-slate-950 flex items-center justify-center">
@@ -2766,10 +2376,12 @@ function Hero() {
             transition={{ duration: 2.5, ease: "easeInOut" }}
             className="absolute inset-0 w-full h-full"
           >
+            {/* Ken Burns Effect Image */}
             <motion.img 
               src={backgroundImages[currentImage]}
               alt="Decoration Background"
               className="w-full h-full object-cover"
+              // Hardware acceleration for smooth zoom
               initial={{ scale: 1 }}
               animate={{ scale: 1.15 }}
               transition={{ duration: 12, ease: "linear" }}
@@ -2777,98 +2389,93 @@ function Hero() {
           </motion.div>
         </AnimatePresence>
         
-        {/* OVERLAYS - Darkened slightly to make the new vibrant text pop */}
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
-        {/* A subtle violet mix to blend with brand colors */}
-        <div className="absolute inset-0 bg-purple-900/20 mix-blend-overlay" />
+        {/* OPTIMIZED OVERLAYS - BRIGHTENED AS REQUESTED */}
+        {/* Base Darkener - Reduced opacity significantly so images are clearer */}
+        <div className="absolute inset-0 bg-black/30 md:bg-black/40" />
+        
+        {/* Brand Color Tints (Subtle Gradients) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
+        {/* Purple tint mix-blend for brand identity */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20 mix-blend-overlay" />
       </motion.div>
 
 
       {/* =========================================
-          2. MAIN CENTER CONTENT (New Color Grading)
+          2. MAIN CENTER CONTENT
       ========================================= */}
       <motion.div 
         style={{ opacity, y: textY }}
         className="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-7xl mx-auto mt-[-60px] md:mt-0"
       >
         
-        {/* TOP TAGLINE: Decoration And Management (Accent Color: Orange/Red from logo number) */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 1, delay: 0.2 }}
-          className="flex items-center gap-3 md:gap-6 mb-2 md:mb-4"
-        >
-          {/* Gradient lines matching the accent color */}
-          <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-orange-500" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500 text-[10px] md:text-sm font-bold uppercase tracking-[0.3em] text-nowrap drop-shadow-sm">
-            Decoration And Management
-          </span>
-          <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-orange-500" />
-        </motion.div>
+        
 
-        {/* MAIN TITLE: SHRI EVENTS (Main Brand Gradient: Violet to Pink) */}
-        <div className="relative mb-2 md:mb-4">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-fuchsia-600/20 blur-[60px] rounded-full -z-10" />
+        {/* MAIN TITLE */}
+        <div className="relative mb-2 md:mb-6">
+          {/* Performance Friendly Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-purple-600/20 blur-[60px] rounded-full -z-10" />
           
           <motion.h1
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            // EXACT GRADIENT FROM LOGO: Violet -> Magenta/Pink
-            className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-serif font-bold leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[#7F00FF] via-[#E100FF] to-[#FF007F] drop-shadow-2xl"
+            // Highly Responsive Text Sizes
+            className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-serif font-semibold leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-100 to-fuchsia-400 drop-shadow-xl"
           >
             Shri Events
           </motion.h1>
         </div>
 
-        {/* MIDDLE TAGLINE: Celebrate Lovely Moment's With Us (Smooth 3-Line Color Grading) */}
+      {/* TOP TAGLINE */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 1, delay: 0.2 }}
+          className="flex items-center gap-3 md:gap-6 mb-4 md:mb-8"
+        >
+          <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-pink-400" />
+          <span className="text-pink-200 text-[10px] md:text-sm font-medium uppercase tracking-[0.3em] text-nowrap">
+            Decoration And Management
+          </span>
+          <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-pink-400" />
+        </motion.div>
+
+        {/* MIDDLE TAGLINE */}
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
-          // Smooth gradient across the text block: Violet -> Pink -> Orange
-          className="text-xl sm:text-3xl md:text-5xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-orange-400 drop-shadow-lg px-4"
+          className="text-xl sm:text-3xl md:text-5xl font-light text-white drop-shadow-lg px-4"
         >
           Celebrate Lovely Moment's With Us
         </motion.h2>
 
-        {/* BOTTOM EMOTIONAL TAGLINE (Softer Pink/Violet) */}
+        {/* BOTTOM EMOTIONAL TAGLINE */}
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 1 }}
-          className="mt-3 md:mt-6 text-base md:text-2xl text-pink-200/90 font-serif italic"
+          className="mt-3 md:mt-6 text-base md:text-2xl text-pink-100/90 font-serif italic"
         >
           " We make your smile "
         </motion.p>
 
-        {/* ACTION BUTTONS (New Glass Effect & Gradients) */}
+        {/* ACTION BUTTONS */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
           className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto px-8 sm:px-0"
         >
-          {/* GLASS BUTTON: Explore Services */}
           <a 
             href="#services"
-            // Glassmorphism styles: transparent bg, blur, gradient border
-            className="group relative w-full sm:w-auto px-8 py-3 md:py-4 overflow-hidden rounded-full bg-white/5 backdrop-blur-md border-[1px] border-transparent transition-all duration-300 hover:bg-white/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(225,0,255,0.4)]"
+            className="w-full sm:w-auto px-8 py-3 md:py-4 bg-gradient-to-r from-fuchsia-700 to-purple-800 text-white font-semibold text-base md:text-lg rounded-full shadow-lg shadow-purple-900/40 active:scale-95 transition-transform"
           >
-            {/* Gradient Border Trick */}
-            <div className="absolute inset-0 rounded-full z-[-1] bg-gradient-to-r from-violet-500 via-fuchsia-500 to-orange-500 p-[1px] -m-[1px] mask-border"></div>
-            <span className="relative text-white font-semibold text-base md:text-lg group-hover:text-pink-100 transition-colors">
-              Explore Services
-            </span>
+            Explore Services
           </a>
-
-          {/* SOLID GRADIENT BUTTON: Call Now */}
           <a 
             href="tel:+919739220735"
-            // Main brand gradient background
-            className="w-full sm:w-auto px-8 py-3 md:py-4 bg-gradient-to-r from-[#7F00FF] to-[#FF007F] text-white font-semibold text-base md:text-lg rounded-full shadow-lg shadow-fuchsia-900/40 active:scale-95 hover:scale-105 transition-transform"
+            className="w-full sm:w-auto px-8 py-3 md:py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium text-base md:text-lg rounded-full active:bg-white/20 transition-colors"
           >
             Call Now
           </a>
@@ -2877,15 +2484,19 @@ function Hero() {
 
 
       {/* =========================================
-          3. BOTTOM LEFT ANIMATED LOGO BADGE (Unchanged)
+          3. BOTTOM LEFT ANIMATED LOGO BADGE
       ========================================= */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
+        // Positioning: Bottom Left, responsive margins
         className="absolute bottom-4 left-4 md:bottom-8 md:left-8 z-30"
       >
+        {/* Container for Video + Text Ring. Responsive sizing. */}
         <div className="relative w-[70px] h-[70px] md:w-[120px] md:h-[120px] flex items-center justify-center">
+          
+          {/* ROTATING CIRCULAR TEXT RING */}
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
@@ -2896,20 +2507,21 @@ function Hero() {
                 key={i}
                 style={{
                   position: "absolute",
+                  // Magic number to push text to the edge based on container size
                   height: `100%`, 
                   transform: `rotate(${i * (360 / characters.length)}deg)`,
-                  transformOrigin: "0 50%",
+                  transformOrigin: "0 50%", // Rotate around center point
                   left: '50%',
                 }}
-                // Updated text color to match new theme
-                className="text-fuchsia-300/80 font-serif uppercase text-[6px] md:text-[10px] font-medium tracking-widest"
+                className="text-pink-300/80 font-serif uppercase text-[6px] md:text-[10px] font-medium tracking-widest"
               >
                <span style={{ position: 'absolute', top: -5, left: '-50%' }}>{char}</span>
               </span>
             ))}
           </motion.div>
 
-          <div className="relative w-full h-full rounded-full overflow-hidden border-[1px] border-fuchsia-400/30 z-10 bg-black/40 backdrop-blur-sm p-1 md:p-2 scale-75">
+          {/* CENTRAL CIRCULAR VIDEO */}
+          <div className="relative w-full h-full rounded-full overflow-hidden border-[1px] border-purple-400/30 z-10 bg-black/40 backdrop-blur-sm p-1 md:p-2 scale-75">
             <video
               src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
               autoPlay
@@ -2923,21 +2535,415 @@ function Hero() {
         </div>
       </motion.div>
 
+
       {/* =========================================
-          4. SCROLL INDICATOR (Updated Color)
+          4. SCROLL INDICATOR
       ========================================= */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }} 
         transition={{ delay: 2, duration: 2, repeat: Infinity }} 
+        // Adjusted bottom position to not overlap logo on small screens
         className="absolute bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
       >
-        <span className="text-[10px] uppercase tracking-[0.2em] text-fuchsia-200/60">Scroll</span>
-        <ChevronRight className="w-5 h-5 text-fuchsia-300 rotate-90" />
+        <span className="text-[10px] uppercase tracking-[0.2em] text-pink-200/60">Scroll</span>
+        <ChevronRight className="w-5 h-5 text-pink-300 rotate-90" />
       </motion.div>
     </section>
   );
 }
+t00 bright
+function Hero() {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0.75]);
+
+  return (
+    <section id="home" className="relative h-screen overflow-hidden">
+      {/* Parallax Background */}
+      <motion.div style={{ y }} className="absolute inset-0 -z-10">
+        <img
+          src="/event_hero_image_violet_brighter.webp"
+          alt="Shri Events"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-purple-900/40 to-transparent" />
+      </motion.div>
+
+      {/* Floating Logo */}
+      <div className="absolute left-4 bottom-6 md:left-16 md:bottom-16 z-30">
+        <div className="bg-black/70 backdrop-blur-md rounded-full shadow-2xl p-3 md:p-6 border border-amber-400/30">
+          <video
+            src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
+            autoPlay loop muted playsInline
+            className="w-12 h-12 md:w-32 md:h-32 object-contain"
+          />
+        </div>
+      </div>
+
+      {/* 3 SINGLE BUTTERFLIES WITH SOFT TRAILS – Calm & Elegant */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Butterfly 1 – Top Left */}
+        <motion.div
+          initial={{ x: -100, y: 100 }}
+          animate={{
+            x: [null, 100, -80, 120],
+            y: [null, -60, -100, -40],
+          }}
+          transition={{
+            duration: 32,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 opacity-60"
+        >
+          <motion.div
+            className="absolute inset-0 blur-xl opacity-30 bg-gradient-to-r from-purple-400/20 via-blue-400/10 to-transparent"
+            animate={{ scale: [1, 1.4, 1] }}
+            transition={{ duration: 4, repeat: Infinity }}
+          />
+          <ButterflyAnimation />
+        </motion.div>
+
+        {/* Butterfly 2 – Top Right */}
+        <motion.div
+          initial={{ x: 100, y: 80 }}
+          animate={{
+            x: [null, -120, 80, -100],
+            y: [null, -80, -40, -100],
+          }}
+          transition={{
+            duration: 38,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 6,
+          }}
+          className="absolute top-16 right-8 w-56 h-56 md:w-72 md:h-72 opacity-55 hidden md:block"
+        >
+          <motion.div
+            className="absolute inset-0 blur-2xl opacity-25 bg-gradient-to-l from-blue-400/20 via-purple-400/10 to-transparent"
+            animate={{ scale: [1, 1.5, 1] }}
+            transition={{ duration: 5, repeat: Infinity }}
+          />
+          <ButterflyAnimation />
+        </motion.div>
+
+        {/* Butterfly 3 – Bottom Center */}
+        <motion.div
+          initial={{ x: 0, y: 200 }}
+          animate={{
+            x: [-80, 100, -60, 80],
+            y: [null, -100, -60, -120],
+          }}
+          transition={{
+            duration: 42,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 12,
+          }}
+          className="absolute bottom-40 left-1/2 -translate-x-1/2 w-48 h-48 md:w-60 md:h-60 opacity-50 hidden lg:block"
+        >
+          <motion.div
+            className="absolute inset-0 blur-xl opacity-20 bg-gradient-to-t from-purple-400/15 to-transparent"
+            animate={{ scale: [1, 1.6, 1] }}
+            transition={{ duration: 6, repeat: Infinity }}
+          />
+          <ButterflyAnimation />
+        </motion.div>
+      </div>
+
+      {/* Very Subtle Sparkles (almost invisible) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white/20 rounded-full blur-sm"
+            initial={{ y: -50 }}
+            animate={{ y: "110vh" }}
+            transition={{
+              duration: 25 + i * 4,
+              repeat: Infinity,
+              delay: i * 3,
+              ease: "linear",
+            }}
+            style={{ left: `${15 + i * 13}%` }}
+          />
+        ))}
+      </div>
+
+      {/* MAIN CONTENT – Clean, Royal, Focused */}
+      <motion.div
+        style={{ opacity }}
+        className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 100 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.8, ease: "easeOut" }}
+          className="mb-12 relative"
+        >
+          <div className="absolute -inset-8 bg-gradient-to-r from-amber-400/15 via-yellow-300/10 to-amber-400/15 blur-3xl rounded-full animate-pulse-slow opacity-70" />
+          
+          <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black tracking-tight leading-none bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100 bg-clip-text text-transparent drop-shadow-2xl">
+            Shri Events
+          </h1>
+
+          <div className="flex items-center justify-center gap-10 mt-8">
+            <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }} className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase">
+              Decoration and Management
+            </motion.p>
+            <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent" />
+          </div>
+        </motion.div>
+
+        <motion.h2 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6 }} className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8">
+          Celebrate Lovely Moments
+        </motion.h2>
+
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light">
+          With us, every smile shines brighter than ever
+        </motion.p>
+
+        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.3 }} className="flex flex-col sm:flex-row gap-6">
+          <a href="/services" className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border border-amber-300">
+            Explore Services
+          </a>
+          <a href={`tel:${PHONE_NUMBER}`} className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all">
+            Call Now +91 97392 20735
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll Indicator */}
+      <motion.div animate={{ y: [0, 15, 0] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
+      </motion.div>
+    </section>
+  );
+}
+//upgrade to crazy
+// function Hero() {
+//   const { scrollY } = useScroll();
+  
+//   // OPTIMIZATION: Reduced parallax for smoother mobile experience
+//   const y = useTransform(scrollY, [0, 500], [0, 100]);
+//   const textY = useTransform(scrollY, [0, 300], [0, 80]);
+//   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
+//   // Image Array
+//   const backgroundImages = [
+//     "/event2.jpg",
+//     "/event_hero_image_balanced.webp",
+//     "/event4.jpg",
+//     "/oie_911234R8vLZS8d.jpg",
+//     "/oie_9113458FxOUTGzI.jpg",
+//     "/oie_9113542DF0IVhHx.jpg",
+//     "/assets/uAINxsSQeVJ4.jpg",
+//   ];
+
+//   const [currentImage, setCurrentImage] = useState(0);
+
+//   // Background Slideshow Logic
+//   useEffect(() => {
+//     const timer = setInterval(() => {
+//       setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
+//     }, 6000);
+//     return () => clearInterval(timer);
+//   }, []);
+
+//   // Circular Text Logic
+//   const circularText = "Shri.Events.Decor • ";
+//   const characters = circularText.split("");
+
+//   return (
+//     <section id="home" className="relative h-screen w-full overflow-hidden bg-slate-950 flex items-center justify-center">
+      
+//       {/* =========================================
+//           1. BACKGROUND LAYERS
+//       ========================================= */}
+//       <motion.div style={{ y }} className="absolute inset-0 z-0">
+//         <AnimatePresence mode='popLayout'>
+//           <motion.div
+//             key={currentImage}
+//             initial={{ opacity: 0 }}
+//             animate={{ opacity: 1 }}
+//             exit={{ opacity: 0 }}
+//             transition={{ duration: 2.5, ease: "easeInOut" }}
+//             className="absolute inset-0 w-full h-full"
+//           >
+//             <motion.img 
+//               src={backgroundImages[currentImage]}
+//               alt="Decoration Background"
+//               className="w-full h-full object-cover"
+//               initial={{ scale: 1 }}
+//               animate={{ scale: 1.15 }}
+//               transition={{ duration: 12, ease: "linear" }}
+//             />
+//           </motion.div>
+//         </AnimatePresence>
+        
+//         {/* OVERLAYS - Darkened slightly to make the new vibrant text pop */}
+//         <div className="absolute inset-0 bg-black/50" />
+//         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
+//         {/* A subtle violet mix to blend with brand colors */}
+//         <div className="absolute inset-0 bg-purple-900/20 mix-blend-overlay" />
+//       </motion.div>
+
+
+//       {/* =========================================
+//           2. MAIN CENTER CONTENT (New Color Grading)
+//       ========================================= */}
+//       <motion.div 
+//         style={{ opacity, y: textY }}
+//         className="relative z-20 flex flex-col items-center text-center px-4 w-full max-w-7xl mx-auto mt-[-60px] md:mt-0"
+//       >
+        
+//         {/* TOP TAGLINE: Decoration And Management (Accent Color: Orange/Red from logo number) */}
+//         <motion.div 
+//           initial={{ opacity: 0, y: -20 }}
+//           animate={{ opacity: 1, y: 0 }} 
+//           transition={{ duration: 1, delay: 0.2 }}
+//           className="flex items-center gap-3 md:gap-6 mb-2 md:mb-4"
+//         >
+//           {/* Gradient lines matching the accent color */}
+//           <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-orange-500" />
+//           <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500 text-[10px] md:text-sm font-bold uppercase tracking-[0.3em] text-nowrap drop-shadow-sm">
+//             Decoration And Management
+//           </span>
+//           <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-orange-500" />
+//         </motion.div>
+
+//         {/* MAIN TITLE: SHRI EVENTS (Main Brand Gradient: Violet to Pink) */}
+//         <div className="relative mb-2 md:mb-4">
+//           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-fuchsia-600/20 blur-[60px] rounded-full -z-10" />
+          
+//           <motion.h1
+//             initial={{ opacity: 0, scale: 0.95 }}
+//             animate={{ opacity: 1, scale: 1 }}
+//             transition={{ duration: 1.2, ease: "easeOut" }}
+//             // EXACT GRADIENT FROM LOGO: Violet -> Magenta/Pink
+//             className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-serif font-bold leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[#7F00FF] via-[#E100FF] to-[#FF007F] drop-shadow-2xl"
+//           >
+//             Shri Events
+//           </motion.h1>
+//         </div>
+
+//         {/* MIDDLE TAGLINE: Celebrate Lovely Moment's With Us (Smooth 3-Line Color Grading) */}
+//         <motion.h2 
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 0.5, duration: 1 }}
+//           // Smooth gradient across the text block: Violet -> Pink -> Orange
+//           className="text-xl sm:text-3xl md:text-5xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-orange-400 drop-shadow-lg px-4"
+//         >
+//           Celebrate Lovely Moment's With Us
+//         </motion.h2>
+
+//         {/* BOTTOM EMOTIONAL TAGLINE (Softer Pink/Violet) */}
+//         <motion.p 
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           transition={{ delay: 0.8, duration: 1 }}
+//           className="mt-3 md:mt-6 text-base md:text-2xl text-pink-200/90 font-serif italic"
+//         >
+//           " We make your smile "
+//         </motion.p>
+
+//         {/* ACTION BUTTONS (New Glass Effect & Gradients) */}
+//         <motion.div 
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 1 }}
+//           className="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto px-8 sm:px-0"
+//         >
+//           {/* GLASS BUTTON: Explore Services */}
+//           <a 
+//             href="#services"
+//             // Glassmorphism styles: transparent bg, blur, gradient border
+//             className="group relative w-full sm:w-auto px-8 py-3 md:py-4 overflow-hidden rounded-full bg-white/5 backdrop-blur-md border-[1px] border-transparent transition-all duration-300 hover:bg-white/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(225,0,255,0.4)]"
+//           >
+//             {/* Gradient Border Trick */}
+//             <div className="absolute inset-0 rounded-full z-[-1] bg-gradient-to-r from-violet-500 via-fuchsia-500 to-orange-500 p-[1px] -m-[1px] mask-border"></div>
+//             <span className="relative text-white font-semibold text-base md:text-lg group-hover:text-pink-100 transition-colors">
+//               Explore Services
+//             </span>
+//           </a>
+
+//           {/* SOLID GRADIENT BUTTON: Call Now */}
+//           <a 
+//             href="tel:+919739220735"
+//             // Main brand gradient background
+//             className="w-full sm:w-auto px-8 py-3 md:py-4 bg-gradient-to-r from-[#7F00FF] to-[#FF007F] text-white font-semibold text-base md:text-lg rounded-full shadow-lg shadow-fuchsia-900/40 active:scale-95 hover:scale-105 transition-transform"
+//           >
+//             Call Now
+//           </a>
+//         </motion.div>
+//       </motion.div>
+
+
+//       {/* =========================================
+//           3. BOTTOM LEFT ANIMATED LOGO BADGE (Unchanged)
+//       ========================================= */}
+//       <motion.div 
+//         initial={{ opacity: 0, scale: 0.8 }}
+//         animate={{ opacity: 1, scale: 1 }}
+//         transition={{ delay: 1.5, duration: 1 }}
+//         className="absolute bottom-4 left-4 md:bottom-8 md:left-8 z-30"
+//       >
+//         <div className="relative w-[70px] h-[70px] md:w-[120px] md:h-[120px] flex items-center justify-center">
+//           <motion.div
+//             animate={{ rotate: 360 }}
+//             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+//             className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none"
+//           >
+//             {characters.map((char, i) => (
+//               <span
+//                 key={i}
+//                 style={{
+//                   position: "absolute",
+//                   height: `100%`, 
+//                   transform: `rotate(${i * (360 / characters.length)}deg)`,
+//                   transformOrigin: "0 50%",
+//                   left: '50%',
+//                 }}
+//                 // Updated text color to match new theme
+//                 className="text-fuchsia-300/80 font-serif uppercase text-[6px] md:text-[10px] font-medium tracking-widest"
+//               >
+//                <span style={{ position: 'absolute', top: -5, left: '-50%' }}>{char}</span>
+//               </span>
+//             ))}
+//           </motion.div>
+
+//           <div className="relative w-full h-full rounded-full overflow-hidden border-[1px] border-fuchsia-400/30 z-10 bg-black/40 backdrop-blur-sm p-1 md:p-2 scale-75">
+//             <video
+//               src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
+//               autoPlay
+//               loop
+//               muted
+//               playsInline
+//               className="w-full h-full object-contain rounded-full"
+//               style={{ background: "transparent" }}
+//             />
+//           </div>
+//         </div>
+//       </motion.div>
+
+//       {/* =========================================
+//           4. SCROLL INDICATOR (Updated Color)
+//       ========================================= */}
+//       <motion.div 
+//         initial={{ opacity: 0 }}
+//         animate={{ opacity: 1, y: [0, 10, 0] }} 
+//         transition={{ delay: 2, duration: 2, repeat: Infinity }} 
+//         className="absolute bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+//       >
+//         <span className="text-[10px] uppercase tracking-[0.2em] text-fuchsia-200/60">Scroll</span>
+//         <ChevronRight className="w-5 h-5 text-fuchsia-300 rotate-90" />
+//       </motion.div>
+//     </section>
+//   );
+// }
 //royal grand
 // ==== FINAL GRAND HERO – CLIENT WILL FALL IN LOVE INSTANTLY ====
 // ==== FINAL GRAND HERO – FIXED & PERFECT ====
