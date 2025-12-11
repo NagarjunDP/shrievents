@@ -1859,7 +1859,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform,AnimatePresence } from 'framer-motion';
 import {
   Sparkles,
   Palette,
@@ -2152,126 +2152,169 @@ if (typeof window !== 'undefined') {
 // }
 function Hero() {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0.75]);
+  const y = useTransform(scrollY, [0, 500], [0, 200]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const textY = useTransform(scrollY, [0, 300], [0, 100]);
+
+  // BACKGROUND SLIDESHOW LOGIC
+  // Replace these with the actual decoration photos from the client
+  const backgroundImages = [
+    "/event_hero_image_violet_brighter.webp", 
+    // Add their decoration photos here, e.g.:
+    // "/decoration_1.jpg",
+    // "/decoration_2.jpg"
+  ];
+
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    // Change background every 5 seconds
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // BUTTERFLY CONFIGURATION (4 Butterflies as requested)
+  const butterflies = [
+    { id: 1, top: '20%', left: '15%', size: 'w-24 h-24 md:w-32 md:h-32', delay: 0, duration: 25 }, // Top Left
+    { id: 2, top: '60%', left: '80%', size: 'w-20 h-20 md:w-28 md:h-28', delay: 2, duration: 30 }, // Bottom Right
+    { id: 3, top: '15%', left: '70%', size: 'w-16 h-16 md:w-24 md:h-24', delay: 5, duration: 20 }, // Top Right
+    { id: 4, top: '70%', left: '10%', size: 'w-28 h-28 md:w-40 md:h-40', delay: 1, duration: 35 }, // Bottom Left
+  ];
 
   return (
-    <section id="home" className="relative h-screen overflow-hidden">
-      {/* Parallax Background */}
-      <motion.div style={{ y }} className="absolute inset-0 -z-10">
-        <img
-          src="/event_hero_image_violet_brighter.webp"
-          alt="Shri Events"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-purple-900/40 to-transparent" />
-      </motion.div>
-
-      {/* Floating Logo */}
-      <div className="absolute left-4 bottom-6 md:left-16 md:bottom-16 z-30">
-        <div className="bg-black/70 backdrop-blur-md rounded-full shadow-2xl p-3 md:p-6 border border-amber-400/30">
-          <video
-            src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
-            autoPlay loop muted playsInline
-            className="w-12 h-12 md:w-32 md:h-32 object-contain"
+    <section id="home" className="relative h-screen w-full overflow-hidden bg-black">
+      
+      {/* 1. ANIMATED BACKGROUND SLIDER */}
+      <div className="absolute inset-0 -z-20">
+        <AnimatePresence mode='popLayout'>
+          <motion.img
+            key={currentImage}
+            src={backgroundImages[currentImage]}
+            alt="Decoration Background"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2.5, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
           />
-        </div>
+        </AnimatePresence>
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-overlay" /> {/* Optional texture */}
       </div>
 
-      {/* GRAND SINGLE BUTTERFLY WITH PARTICLE TRAIL */}
-      {/* Optimized for mobile (w-32) and desktop (md:w-48) */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20 w-32 h-32 md:w-48 md:h-48"
-        animate={{
-          // Four random-like movement points for a grand, slow float
-          x: ['-50%', '10%', '-70%', '30%', '-50%'], 
-          y: ['-50%', '20%', '-80%', '10%', '-50%'], 
-          rotate: [0, 10, -10, 5, 0], // Subtle rotation for floating
-        }}
-        transition={{
-          duration: 40, // Long duration for slow, grand movement
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        {/* Particle Trail (Blurred Glow) - Simple, not bright, subtle */}
-        <motion.div
-          className="absolute inset-0 -m-10 blur-3xl opacity-50 bg-gradient-to-r from-pink-500/50 via-purple-500/50 to-transparent rounded-full"
-          animate={{ scale: [1, 1.5, 1] }} // Subtle pulsing of the trail
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        />
-        
-        {/* The User's Butterfly Component */}
-        <ButterflyAnimation />
-      </motion.div>
-
-      {/* Very Subtle Sparkles (Kept from original code) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(6)].map((_, i) => (
+      {/* 2. FLOATING BUTTERFLIES (3 to 4 instances) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
+        {butterflies.map((fly) => (
           <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full blur-sm"
-            initial={{ y: -50 }}
-            animate={{ y: "110vh" }}
-            transition={{
-              duration: 25 + i * 4,
-              repeat: Infinity,
-              delay: i * 3,
-              ease: "linear",
+            key={fly.id}
+            className={`absolute ${fly.size} opacity-90`}
+            style={{ top: fly.top, left: fly.left }}
+            animate={{
+              y: [0, -30, 0, 40, 0],
+              x: [0, 20, 0, -20, 0],
+              rotate: [0, 5, -5, 5, 0],
             }}
-            style={{ left: `${15 + i * 13}%` }}
-          />
+            transition={{
+              duration: fly.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: fly.delay,
+            }}
+          >
+            {/* The Client's Butterfly Component */}
+            <ButterflyAnimation />
+            
+            {/* Subtle glow behind butterfly */}
+            <div className="absolute inset-0 blur-2xl bg-amber-500/20 rounded-full -z-10" />
+          </motion.div>
         ))}
       </div>
 
-      {/* MAIN CONTENT – Clean, Royal, Focused */}
-      <motion.div
-        style={{ opacity }}
-        className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
+      {/* 3. HERO CONTENT - Grand & Centered */}
+      <motion.div 
+        style={{ opacity, y: textY }}
+        className="relative z-20 h-full flex flex-col justify-center items-center text-center px-4"
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 100 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
-          className="mb-12 relative"
+        
+        {/* Elegant Top Label */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="mb-6 flex items-center gap-4"
         >
-          <div className="absolute -inset-8 bg-gradient-to-r from-amber-400/15 via-yellow-300/10 to-amber-400/15 blur-3xl rounded-full animate-pulse-slow opacity-70" />
-          
-          <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black tracking-tight leading-none bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100 bg-clip-text text-transparent drop-shadow-2xl">
-            Shri Events
-          </h1>
-
-          <div className="flex items-center justify-center gap-10 mt-8">
-            <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }} className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase">
-              Decoration and Management
-            </motion.p>
-            <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent" />
-          </div>
+          <div className="h-[1px] w-12 bg-amber-400/50" />
+          <span className="text-amber-300 tracking-[0.3em] text-xs md:text-sm uppercase font-light">
+            Premium Event Management
+          </span>
+          <div className="h-[1px] w-12 bg-amber-400/50" />
         </motion.div>
 
-        <motion.h2 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6 }} className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8">
-          Celebrate Lovely Moments
-        </motion.h2>
+        {/* BUSINESS NAME - The Focus */}
+        <div className="relative mb-6">
+          {/* Glow Effect behind text */}
+          <div className="absolute -inset-10 bg-amber-500/10 blur-3xl rounded-full" />
+          
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="relative text-7xl sm:text-8xl md:text-9xl lg:text-[11rem] font-serif font-medium tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-amber-100 via-amber-300 to-amber-600 drop-shadow-2xl"
+          >
+            Shri Events
+          </motion.h1>
+        </div>
 
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light">
-          With us, every smile shines brighter than ever
+        {/* Subtitle / Slogan */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 1 }}
+          className="text-white/80 text-lg md:text-2xl font-light tracking-wide max-w-2xl mb-10"
+        >
+          Decorating your dreams into <span className="text-amber-300 font-normal">grand reality</span>.
         </motion.p>
 
-        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.3 }} className="flex flex-col sm:flex-row gap-6">
-          <a href="#services" className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border border-amber-300">
-            Explore Services
+        {/* Action Buttons - Glassmorphism */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5 }}
+          className="flex flex-col sm:flex-row gap-5 items-center"
+        >
+          <a 
+            href="#services"
+            className="group relative px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full text-black font-semibold text-lg overflow-hidden shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all hover:scale-105"
+          >
+            <span className="relative z-10">Explore Collections</span>
+            <div className="absolute inset-0 bg-white/30 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </a>
-          <a href={`tel:${PHONE_NUMBER}`} className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all">
-            Call Now +91 97392 20735
+
+          <a 
+            href={`tel:+919739220735`} // Replaced variable with hardcode based on context or keep variable if defined
+            className="px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-white font-medium text-lg hover:bg-white/10 transition-all hover:border-amber-400/50"
+          >
+            Book Consultation
           </a>
         </motion.div>
+
       </motion.div>
 
-      {/* Scroll Indicator */}
-      <motion.div animate={{ y: [0, 15, 0] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-10 left-1/2 -translate-x-1/2">
-        <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
+      {/* Minimal Scroll Indicator */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }} 
+        transition={{ delay: 2, duration: 2, repeat: Infinity }} 
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 cursor-pointer"
+        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+      >
+        <span className="text-[10px] uppercase tracking-widest text-white/50">Scroll</span>
+        <ChevronRight className="w-6 h-6 text-amber-400 rotate-90" />
       </motion.div>
+
     </section>
   );
 }
