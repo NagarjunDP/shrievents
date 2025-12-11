@@ -2160,10 +2160,17 @@ function Hero() {
 
   // HIGH QUALITY DUMMY IMAGES (Unsplash: Wedding/Event Decor)
   const backgroundImages = [
-    "https://images.unsplash.com/photo-1519225468359-2996515c1e11?q=80&w=1920&auto=format&fit=crop", // Grand Hall
-    "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop", // Wedding Flowers
-    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1920&auto=format&fit=crop", // Outdoor Decor
-    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920&auto=format&fit=crop", // Lights
+        "/event2.jpg",
+        "/event_hero_image_balanced.webp",
+        "/event4.jpg",
+        "/oie_911234R8vLZS8d.jpg",
+        "/oie_9113458FxOUTGzI.jpg",
+        "/oie_9113542DF0IVhHx.jpg",
+        "/assets/uAINxsSQeVJ4.jpg",
+    // "https://images.unsplash.com/photo-1519225468359-2996515c1e11?q=80&w=1920&auto=format&fit=crop", // Grand Hall
+    // "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop", // Wedding Flowers
+    // "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1920&auto=format&fit=crop", // Outdoor Decor
+    // "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920&auto=format&fit=crop", // Lights
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -2224,19 +2231,7 @@ function Hero() {
       >
         
         {/* TOP TAGLINE */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 1, delay: 0.2 }}
-          className="flex items-center gap-3 md:gap-6 mb-4 md:mb-8"
-        >
-          {/* Decorative Lines */}
-          <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-pink-400" />
-          <span className="text-pink-200 text-[10px] md:text-sm font-medium uppercase tracking-[0.3em] text-nowrap">
-            Decoration And Management
-          </span>
-          <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-pink-400" />
-        </motion.div>
+        
 
         {/* MAIN TITLE: SHRI EVENTS */}
         <div className="relative mb-2 md:mb-6">
@@ -2253,6 +2248,20 @@ function Hero() {
             Shri Events
           </motion.h1>
         </div>
+            //bottom 
+      <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 1, delay: 0.2 }}
+          className="flex items-center gap-3 md:gap-6 mb-4 md:mb-8"
+        >
+          {/* Decorative Lines */}
+          <div className="h-[1px] w-12 md:w-24 bg-gradient-to-r from-transparent to-pink-400" />
+          <span className="text-pink-200 text-[10px] md:text-sm font-medium uppercase tracking-[0.3em] text-nowrap">
+            Decoration And Management
+          </span>
+          <div className="h-[1px] w-12 md:w-24 bg-gradient-to-l from-transparent to-pink-400" />
+        </motion.div>
 
         {/* MIDDLE TAGLINE: Celebrate Lovely Moment */}
         <motion.h2 
@@ -2261,7 +2270,7 @@ function Hero() {
           transition={{ delay: 0.5, duration: 1 }}
           className="text-2xl sm:text-3xl md:text-5xl font-light text-white drop-shadow-lg"
         >
-          Celebrate Lovely Moment
+          Celebrate Lovely Moment's With Us
         </motion.h2>
 
         {/* BOTTOM EMOTIONAL TAGLINE */}
@@ -2285,13 +2294,13 @@ function Hero() {
             href="#services"
             className="w-full sm:w-auto px-8 py-3 md:py-4 bg-gradient-to-r from-fuchsia-700 to-purple-800 text-white font-semibold text-base md:text-lg rounded-full shadow-lg shadow-purple-900/40 active:scale-95 transition-transform"
           >
-            Explore Decor
+            Explore Services
           </a>
           <a 
             href="tel:+919739220735"
             className="w-full sm:w-auto px-8 py-3 md:py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-medium text-base md:text-lg rounded-full active:bg-white/20 transition-colors"
           >
-            Book Consultation
+            Call Now
           </a>
         </motion.div>
 
