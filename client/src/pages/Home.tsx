@@ -2150,10 +2150,6 @@ if (typeof window !== 'undefined') {
 //     </section>
 //   );
 // }
-
-//royal grand
-// ==== FINAL GRAND HERO – CLIENT WILL FALL IN LOVE INSTANTLY ====
-// ==== FINAL GRAND HERO – FIXED & PERFECT ====
 function Hero() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
@@ -2161,7 +2157,7 @@ function Hero() {
 
   return (
     <section id="home" className="relative h-screen overflow-hidden">
-      {/* Parallax Background */}
+      {/* Parallax Hero Image */}
       <motion.div style={{ y }} className="absolute inset-0 -z-10">
         <img
           src="/event_hero_image_violet_brighter.webp"
@@ -2185,76 +2181,132 @@ function Hero() {
         </div>
       </div>
 
-      {/* MAIN GRAND CONTENT */}
+      {/* MAIN CONTENT */}
       <motion.div
         style={{ opacity }}
         className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
       >
-        {/* Subtle Falling Sparkles */}
+        {/* === ONLY 3 REALISTIC BALLOONS + 2 BUTTERFLIES AROUND NAME === */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Balloon 1 - Gold */}
+          <motion.div
+            animate={{
+              y: [0, -60, -30, -70, 0],
+              x: [-40, 20, -20, 30, -40],
+              rotate: [0, 10, -8, 5, 0],
+            }}
+            transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2"
+          >
+            <div className="relative">
+              <div className="w-20 h-28 bg-gradient-to-b from-amber-300 to-amber-500 rounded-full shadow-2xl" />
+              <div className="w-1 h-32 bg-gradient-to-b from-amber-200 to-transparent mx-auto -mt-1" />
+              <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-6 bg-amber-200/60 rounded-full blur-md" />
+            </div>
+          </motion.div>
+
+          {/* Balloon 2 - Rose */}
+          <motion.div
+            animate={{
+              y: [0, -50, -80, -40, 0],
+              x: [60, -30, 40, -20, 60],
+              rotate: [0, -12, 8, -6, 0],
+            }}
+            transition={{ duration: 28, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute top-1/4 right-1/3"
+          >
+            <div className="relative">
+              <div className="w-24 h-32 bg-gradient-to-b from-rose-400 to-pink-500 rounded-full shadow-2xl" />
+              <div className="w-1 h-40 bg-gradient-to-b from-rose-200 to-transparent mx-auto -mt-1" />
+            </div>
+          </motion.div>
+
+          {/* Balloon 3 - Purple */}
+          <motion.div
+            animate={{
+              y: [0, -70, -40, -90, 0],
+              x: [-80, 40, -30, 50, -80],
+              rotate: [0, 15, -10, 8, 0],
+            }}
+            transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+            className="absolute top-1/3 left-1/3"
+          >
+            <div className="relative">
+              <div className="w-22 h-30 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full shadow-2xl" />
+              <div className="w-1 h-36 bg-gradient-to-b from-purple-200 to-transparent mx-auto -mt-1" />
+            </div>
+          </motion.div>
+
+          {/* Butterfly 1 - Delicate Gold */}
+          <motion.div
+            animate={{
+              y: [0, -40, 20, -30, 0],
+              x: [-100, 80, -60, 100, -100],
+              rotate: [0, 30, -30, 20, 0],
+            }}
+            transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/2 left-10 text-amber-300/70"
+          >
+            <svg className="w-12 h-12 drop-shadow-lg" viewBox="0 0 100 100">
+              <path d="M50 10 C30 30, 20 50, 40 70 C50 60, 60 60, 70 70 C90 50, 80 30, 60 10 C55 20, 45 20, 40 10" fill="currentColor" opacity="0.8"/>
+              <path d="M50 90 C70 70, 80 50, 60 30 C50 40, 40 40, 30 30 C10 50, 20 70, 40 90" fill="currentColor" opacity="0.6"/>
+            </svg>
+          </motion.div>
+
+          {/* Butterfly 2 - Soft Pink */}
+          <motion.div
+            animate={{
+              y: [0, -50, 30, -40, 0],
+              x: [120, -90, 100, -70, 120],
+              rotate: [0, -25, 35, -20, 0],
+            }}
+            transition={{ duration: 26, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+            className="absolute top-2/5 right-20 text-pink-300/60"
+          >
+            <svg className="w-10 h-10 drop-shadow-lg" viewBox="0 0 100 100">
+              <path d="M50 10 C30 30, 20 50, 40 70 C50 60, 60 60, 70 70 C90 50, 80 30, 60 10 C55 20, 45 20, 40 10" fill="currentColor" opacity="0.8"/>
+              <path d="M50 90 C70 70, 80 50, 60 30 C50 40, 40 40, 30 30 C10 50, 20 70, 40 90" fill="currentColor" opacity="0.6"/>
+            </svg>
+          </motion.div>
+        </div>
+
+        {/* Subtle Sparkles (Reduced to 12 for mobile performance) */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(12)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-amber-300 rounded-full opacity-70"
+              className="absolute w-1 h-1 bg-amber-300 rounded-full opacity-60"
               initial={{ y: -100 }}
-              animate={{
-                y: "110vh",
-                x: `${Math.random() * 100}vw`,
-              }}
+              animate={{ y: "110vh", x: `${20 + i * 6}vw` }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: 15 + i,
                 repeat: Infinity,
-                delay: Math.random() * 5,
+                delay: i * 0.8,
                 ease: "linear",
               }}
             />
           ))}
         </div>
 
-        {/* GRAND BUSINESS NAME */}
+        {/* GRAND TEXT CONTENT */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.7, y: 100 }}
+          initial={{ opacity: 0, scale: 0.8, y: 100 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
           className="mb-8 md:mb-12 relative"
         >
-          {/* Golden Glow Aura */}
-          <div className="absolute -inset-4 bg-gradient-to-r from-amber-400/30 via-yellow-300/20 to-amber-400/30 blur-3xl rounded-full scale-150 animate-pulse-slow" />
-
-          <h1 className="
-            text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem]
-            font-black tracking-tight leading-none
-            bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100
-            bg-clip-text text-transparent
-            drop-shadow-2xl
-            relative z-10
-            animate-title-glow
-          ">
+          <div className="absolute -inset-6 bg-gradient-to-r from-amber-400/20 via-yellow-300/10 to-amber-400/20 blur-3xl rounded-full animate-pulse-slow" />
+          
+          <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black tracking-tight leading-none bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100 bg-clip-text text-transparent drop-shadow-2xl">
             Shri Events
           </h1>
 
-          {/* Royal Subtitle */}
           <div className="flex items-center justify-center gap-10 mt-8">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "140px" }}
-              transition={{ duration: 1.5, delay: 1 }}
-              className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"
-            />
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 1 }}
-              className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase"
-            >
+            <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 1 }} className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase">
               Decoration and Management
             </motion.p>
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "140px" }}
-              transition={{ duration: 1.5, delay: 1 }}
-              className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent"
-            />
+            <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent" />
           </div>
         </motion.div>
 
@@ -2276,23 +2328,17 @@ function Hero() {
           With us, every smile shines brighter than ever
         </motion.p>
 
-        {/* Royal Buttons */}
+        {/* Royal CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.3, duration: 1 }}
           className="flex flex-col sm:flex-row gap-6"
         >
-          <a
-            href="#services"
-            className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:shadow-amber-400/60 hover:scale-105 transition-all duration-300 border border-amber-300"
-          >
+          <a href="#services" className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:shadow-amber-400/60 hover:scale-105 transition-all duration-300 border border-amber-300">
             Explore Services
           </a>
-          <a
-            href={`tel:${PHONE_NUMBER}`}
-            className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all"
-          >
+          <a href={`tel:${PHONE_NUMBER}`} className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all">
             Call Now +91 97392 20735
           </a>
         </motion.div>
@@ -2309,6 +2355,164 @@ function Hero() {
     </section>
   );
 }
+//royal grand
+// ==== FINAL GRAND HERO – CLIENT WILL FALL IN LOVE INSTANTLY ====
+// ==== FINAL GRAND HERO – FIXED & PERFECT ====
+// function Hero() {
+//   const { scrollY } = useScroll();
+//   const y = useTransform(scrollY, [0, 500], [0, 150]);
+//   const opacity = useTransform(scrollY, [0, 400], [1, 0.75]);
+
+//   return (
+//     <section id="home" className="relative h-screen overflow-hidden">
+//       {/* Parallax Background */}
+//       <motion.div style={{ y }} className="absolute inset-0 -z-10">
+//         <img
+//           src="/event_hero_image_violet_brighter.webp"
+//           alt="Shri Events"
+//           className="w-full h-full object-cover"
+//         />
+//         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-purple-900/40 to-transparent" />
+//       </motion.div>
+
+//       {/* Floating Logo (Bottom Left) */}
+//       <div className="absolute left-4 bottom-6 md:left-16 md:bottom-16 z-30">
+//         <div className="bg-black/70 backdrop-blur-md rounded-full shadow-2xl p-3 md:p-6 border border-amber-400/30">
+//           <video
+//             src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
+//             autoPlay
+//             loop
+//             muted
+//             playsInline
+//             className="w-12 h-12 md:w-32 md:h-32 object-contain"
+//           />
+//         </div>
+//       </div>
+
+//       {/* MAIN GRAND CONTENT */}
+//       <motion.div
+//         style={{ opacity }}
+//         className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
+//       >
+//         {/* Subtle Falling Sparkles */}
+//         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//           {[...Array(20)].map((_, i) => (
+//             <motion.div
+//               key={i}
+//               className="absolute w-1 h-1 bg-amber-300 rounded-full opacity-70"
+//               initial={{ y: -100 }}
+//               animate={{
+//                 y: "110vh",
+//                 x: `${Math.random() * 100}vw`,
+//               }}
+//               transition={{
+//                 duration: Math.random() * 10 + 10,
+//                 repeat: Infinity,
+//                 delay: Math.random() * 5,
+//                 ease: "linear",
+//               }}
+//             />
+//           ))}
+//         </div>
+
+//         {/* GRAND BUSINESS NAME */}
+//         <motion.div
+//           initial={{ opacity: 0, scale: 0.7, y: 100 }}
+//           animate={{ opacity: 1, scale: 1, y: 0 }}
+//           transition={{ duration: 1.8, ease: "easeOut" }}
+//           className="mb-8 md:mb-12 relative"
+//         >
+//           {/* Golden Glow Aura */}
+//           <div className="absolute -inset-4 bg-gradient-to-r from-amber-400/30 via-yellow-300/20 to-amber-400/30 blur-3xl rounded-full scale-150 animate-pulse-slow" />
+
+//           <h1 className="
+//             text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem]
+//             font-black tracking-tight leading-none
+//             bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100
+//             bg-clip-text text-transparent
+//             drop-shadow-2xl
+//             relative z-10
+//             animate-title-glow
+//           ">
+//             Shri Events
+//           </h1>
+
+//           {/* Royal Subtitle */}
+//           <div className="flex items-center justify-center gap-10 mt-8">
+//             <motion.div
+//               initial={{ width: 0 }}
+//               animate={{ width: "140px" }}
+//               transition={{ duration: 1.5, delay: 1 }}
+//               className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"
+//             />
+//             <motion.p
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ delay: 1.2, duration: 1 }}
+//               className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase"
+//             >
+//               Decoration and Management
+//             </motion.p>
+//             <motion.div
+//               initial={{ width: 0 }}
+//               animate={{ width: "140px" }}
+//               transition={{ duration: 1.5, delay: 1 }}
+//               className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent"
+//             />
+//           </div>
+//         </motion.div>
+
+//         <motion.h2
+//           initial={{ opacity: 0, y: 40 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 1.6, duration: 1.4 }}
+//           className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8"
+//         >
+//           Celebrate Lovely Moments
+//         </motion.h2>
+
+//         <motion.p
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           transition={{ delay: 2, duration: 1 }}
+//           className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light"
+//         >
+//           With us, every smile shines brighter than ever
+//         </motion.p>
+
+//         {/* Royal Buttons */}
+//         <motion.div
+//           initial={{ opacity: 0, y: 50 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 2.3, duration: 1 }}
+//           className="flex flex-col sm:flex-row gap-6"
+//         >
+//           <a
+//             href="#services"
+//             className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:shadow-amber-400/60 hover:scale-105 transition-all duration-300 border border-amber-300"
+//           >
+//             Explore Services
+//           </a>
+//           <a
+//             href={`tel:${PHONE_NUMBER}`}
+//             className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all"
+//           >
+//             Call Now +91 97392 20735
+//           </a>
+//         </motion.div>
+//       </motion.div>
+
+//       {/* Scroll Indicator */}
+//       <motion.div
+//         animate={{ y: [0, 15, 0] }}
+//         transition={{ duration: 2, repeat: Infinity }}
+//         className="absolute bottom-10 left-1/2 -translate-x-1/2"
+//       >
+//         <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
+//       </motion.div>
+//     </section>
+//   );
+// }
 
 //update fucniton hero 
 // ==== FINAL SMOOTH + GRAND HERO – PERFECT FOR MOBILE & DESKTOP ====
