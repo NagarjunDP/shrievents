@@ -2552,176 +2552,176 @@ function Hero() {
     </section>
   );
 }
-t00 bright
-function Hero() {
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0.75]);
+// t00 bright
+// function Hero() {
+//   const { scrollY } = useScroll();
+//   const y = useTransform(scrollY, [0, 500], [0, 150]);
+//   const opacity = useTransform(scrollY, [0, 400], [1, 0.75]);
 
-  return (
-    <section id="home" className="relative h-screen overflow-hidden">
-      {/* Parallax Background */}
-      <motion.div style={{ y }} className="absolute inset-0 -z-10">
-        <img
-          src="/event_hero_image_violet_brighter.webp"
-          alt="Shri Events"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-purple-900/40 to-transparent" />
-      </motion.div>
+//   return (
+//     <section id="home" className="relative h-screen overflow-hidden">
+//       {/* Parallax Background */}
+//       <motion.div style={{ y }} className="absolute inset-0 -z-10">
+//         <img
+//           src="/event_hero_image_violet_brighter.webp"
+//           alt="Shri Events"
+//           className="w-full h-full object-cover"
+//         />
+//         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-purple-900/40 to-transparent" />
+//       </motion.div>
 
-      {/* Floating Logo */}
-      <div className="absolute left-4 bottom-6 md:left-16 md:bottom-16 z-30">
-        <div className="bg-black/70 backdrop-blur-md rounded-full shadow-2xl p-3 md:p-6 border border-amber-400/30">
-          <video
-            src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
-            autoPlay loop muted playsInline
-            className="w-12 h-12 md:w-32 md:h-32 object-contain"
-          />
-        </div>
-      </div>
+//       {/* Floating Logo */}
+//       <div className="absolute left-4 bottom-6 md:left-16 md:bottom-16 z-30">
+//         <div className="bg-black/70 backdrop-blur-md rounded-full shadow-2xl p-3 md:p-6 border border-amber-400/30">
+//           <video
+//             src="/grok-video-7446ecf8-8560-4b06-8923-1779d51970da.mp4"
+//             autoPlay loop muted playsInline
+//             className="w-12 h-12 md:w-32 md:h-32 object-contain"
+//           />
+//         </div>
+//       </div>
 
-      {/* 3 SINGLE BUTTERFLIES WITH SOFT TRAILS – Calm & Elegant */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Butterfly 1 – Top Left */}
-        <motion.div
-          initial={{ x: -100, y: 100 }}
-          animate={{
-            x: [null, 100, -80, 120],
-            y: [null, -60, -100, -40],
-          }}
-          transition={{
-            duration: 32,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 opacity-60"
-        >
-          <motion.div
-            className="absolute inset-0 blur-xl opacity-30 bg-gradient-to-r from-purple-400/20 via-blue-400/10 to-transparent"
-            animate={{ scale: [1, 1.4, 1] }}
-            transition={{ duration: 4, repeat: Infinity }}
-          />
-          <ButterflyAnimation />
-        </motion.div>
+//       {/* 3 SINGLE BUTTERFLIES WITH SOFT TRAILS – Calm & Elegant */}
+//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+//         {/* Butterfly 1 – Top Left */}
+//         <motion.div
+//           initial={{ x: -100, y: 100 }}
+//           animate={{
+//             x: [null, 100, -80, 120],
+//             y: [null, -60, -100, -40],
+//           }}
+//           transition={{
+//             duration: 32,
+//             repeat: Infinity,
+//             ease: "easeInOut",
+//           }}
+//           className="absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 opacity-60"
+//         >
+//           <motion.div
+//             className="absolute inset-0 blur-xl opacity-30 bg-gradient-to-r from-purple-400/20 via-blue-400/10 to-transparent"
+//             animate={{ scale: [1, 1.4, 1] }}
+//             transition={{ duration: 4, repeat: Infinity }}
+//           />
+//           <ButterflyAnimation />
+//         </motion.div>
 
-        {/* Butterfly 2 – Top Right */}
-        <motion.div
-          initial={{ x: 100, y: 80 }}
-          animate={{
-            x: [null, -120, 80, -100],
-            y: [null, -80, -40, -100],
-          }}
-          transition={{
-            duration: 38,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 6,
-          }}
-          className="absolute top-16 right-8 w-56 h-56 md:w-72 md:h-72 opacity-55 hidden md:block"
-        >
-          <motion.div
-            className="absolute inset-0 blur-2xl opacity-25 bg-gradient-to-l from-blue-400/20 via-purple-400/10 to-transparent"
-            animate={{ scale: [1, 1.5, 1] }}
-            transition={{ duration: 5, repeat: Infinity }}
-          />
-          <ButterflyAnimation />
-        </motion.div>
+//         {/* Butterfly 2 – Top Right */}
+//         <motion.div
+//           initial={{ x: 100, y: 80 }}
+//           animate={{
+//             x: [null, -120, 80, -100],
+//             y: [null, -80, -40, -100],
+//           }}
+//           transition={{
+//             duration: 38,
+//             repeat: Infinity,
+//             ease: "easeInOut",
+//             delay: 6,
+//           }}
+//           className="absolute top-16 right-8 w-56 h-56 md:w-72 md:h-72 opacity-55 hidden md:block"
+//         >
+//           <motion.div
+//             className="absolute inset-0 blur-2xl opacity-25 bg-gradient-to-l from-blue-400/20 via-purple-400/10 to-transparent"
+//             animate={{ scale: [1, 1.5, 1] }}
+//             transition={{ duration: 5, repeat: Infinity }}
+//           />
+//           <ButterflyAnimation />
+//         </motion.div>
 
-        {/* Butterfly 3 – Bottom Center */}
-        <motion.div
-          initial={{ x: 0, y: 200 }}
-          animate={{
-            x: [-80, 100, -60, 80],
-            y: [null, -100, -60, -120],
-          }}
-          transition={{
-            duration: 42,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 12,
-          }}
-          className="absolute bottom-40 left-1/2 -translate-x-1/2 w-48 h-48 md:w-60 md:h-60 opacity-50 hidden lg:block"
-        >
-          <motion.div
-            className="absolute inset-0 blur-xl opacity-20 bg-gradient-to-t from-purple-400/15 to-transparent"
-            animate={{ scale: [1, 1.6, 1] }}
-            transition={{ duration: 6, repeat: Infinity }}
-          />
-          <ButterflyAnimation />
-        </motion.div>
-      </div>
+//         {/* Butterfly 3 – Bottom Center */}
+//         <motion.div
+//           initial={{ x: 0, y: 200 }}
+//           animate={{
+//             x: [-80, 100, -60, 80],
+//             y: [null, -100, -60, -120],
+//           }}
+//           transition={{
+//             duration: 42,
+//             repeat: Infinity,
+//             ease: "easeInOut",
+//             delay: 12,
+//           }}
+//           className="absolute bottom-40 left-1/2 -translate-x-1/2 w-48 h-48 md:w-60 md:h-60 opacity-50 hidden lg:block"
+//         >
+//           <motion.div
+//             className="absolute inset-0 blur-xl opacity-20 bg-gradient-to-t from-purple-400/15 to-transparent"
+//             animate={{ scale: [1, 1.6, 1] }}
+//             transition={{ duration: 6, repeat: Infinity }}
+//           />
+//           <ButterflyAnimation />
+//         </motion.div>
+//       </div>
 
-      {/* Very Subtle Sparkles (almost invisible) */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full blur-sm"
-            initial={{ y: -50 }}
-            animate={{ y: "110vh" }}
-            transition={{
-              duration: 25 + i * 4,
-              repeat: Infinity,
-              delay: i * 3,
-              ease: "linear",
-            }}
-            style={{ left: `${15 + i * 13}%` }}
-          />
-        ))}
-      </div>
+//       {/* Very Subtle Sparkles (almost invisible) */}
+//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+//         {[...Array(6)].map((_, i) => (
+//           <motion.div
+//             key={i}
+//             className="absolute w-1 h-1 bg-white/20 rounded-full blur-sm"
+//             initial={{ y: -50 }}
+//             animate={{ y: "110vh" }}
+//             transition={{
+//               duration: 25 + i * 4,
+//               repeat: Infinity,
+//               delay: i * 3,
+//               ease: "linear",
+//             }}
+//             style={{ left: `${15 + i * 13}%` }}
+//           />
+//         ))}
+//       </div>
 
-      {/* MAIN CONTENT – Clean, Royal, Focused */}
-      <motion.div
-        style={{ opacity }}
-        className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 100 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
-          className="mb-12 relative"
-        >
-          <div className="absolute -inset-8 bg-gradient-to-r from-amber-400/15 via-yellow-300/10 to-amber-400/15 blur-3xl rounded-full animate-pulse-slow opacity-70" />
+//       {/* MAIN CONTENT – Clean, Royal, Focused */}
+//       <motion.div
+//         style={{ opacity }}
+//         className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6"
+//       >
+//         <motion.div
+//           initial={{ opacity: 0, scale: 0.8, y: 100 }}
+//           animate={{ opacity: 1, scale: 1, y: 0 }}
+//           transition={{ duration: 1.8, ease: "easeOut" }}
+//           className="mb-12 relative"
+//         >
+//           <div className="absolute -inset-8 bg-gradient-to-r from-amber-400/15 via-yellow-300/10 to-amber-400/15 blur-3xl rounded-full animate-pulse-slow opacity-70" />
           
-          <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black tracking-tight leading-none bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100 bg-clip-text text-transparent drop-shadow-2xl">
-            Shri Events
-          </h1>
+//           <h1 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-black tracking-tight leading-none bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-100 bg-clip-text text-transparent drop-shadow-2xl">
+//             Shri Events
+//           </h1>
 
-          <div className="flex items-center justify-center gap-10 mt-8">
-            <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }} className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase">
-              Decoration and Management
-            </motion.p>
-            <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent" />
-          </div>
-        </motion.div>
+//           <div className="flex items-center justify-center gap-10 mt-8">
+//             <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent" />
+//             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }} className="text-xl sm:text-2xl md:text-3xl font-medium tracking-widest text-amber-100 uppercase">
+//               Decoration and Management
+//             </motion.p>
+//             <motion.div initial={{ width: 0 }} animate={{ width: "140px" }} transition={{ duration: 1.5, delay: 1 }} className="h-px bg-gradient-to-l from-transparent via-amber-300 to-transparent" />
+//           </div>
+//         </motion.div>
 
-        <motion.h2 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6 }} className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8">
-          Celebrate Lovely Moments
-        </motion.h2>
+//         <motion.h2 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.6 }} className="text-4xl sm:text-5xl md:text-7xl font-bold text-white drop-shadow-2xl mb-8">
+//           Celebrate Lovely Moments
+//         </motion.h2>
 
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light">
-          With us, every smile shines brighter than ever
-        </motion.p>
+//         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="text-xl md:text-2xl text-pink-100 mb-12 max-w-3xl font-light">
+//           With us, every smile shines brighter than ever
+//         </motion.p>
 
-        <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.3 }} className="flex flex-col sm:flex-row gap-6">
-          <a href="/services" className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border border-amber-300">
-            Explore Services
-          </a>
-          <a href={`tel:${PHONE_NUMBER}`} className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all">
-            Call Now +91 97392 20735
-          </a>
-        </motion.div>
-      </motion.div>
+//         <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.3 }} className="flex flex-col sm:flex-row gap-6">
+//           <a href="/services" className="px-12 py-5 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-lg rounded-full shadow-2xl hover:scale-105 transition-all duration-300 border border-amber-300">
+//             Explore Services
+//           </a>
+//           <a href={`tel:${PHONE_NUMBER}`} className="px-12 py-5 bg-white/10 backdrop-blur-md border-2 border-amber-300 text-white font-bold text-lg rounded-full hover:bg-white/20 transition-all">
+//             Call Now +91 97392 20735
+//           </a>
+//         </motion.div>
+//       </motion.div>
 
-      {/* Scroll Indicator */}
-      <motion.div animate={{ y: [0, 15, 0] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-10 left-1/2 -translate-x-1/2">
-        <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
-      </motion.div>
-    </section>
-  );
-}
+//       {/* Scroll Indicator */}
+//       <motion.div animate={{ y: [0, 15, 0] }} transition={{ duration: 2, repeat: Infinity }} className="absolute bottom-10 left-1/2 -translate-x-1/2">
+//         <ChevronRight className="w-10 h-10 text-amber-300 rotate-90" />
+//       </motion.div>
+//     </section>
+//   );
+// }
 //upgrade to crazy
 // function Hero() {
 //   const { scrollY } = useScroll();
