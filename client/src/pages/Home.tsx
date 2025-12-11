@@ -2332,9 +2332,9 @@ function Hero() {
 
   // Image Array containing client photos and balanced fallbacks
   const backgroundImages = [
-    "/event2.jpg",
-    "/event3.jpg",
     "/event4.jpg",
+    "/event3.jpg",
+    "/event2.jpg",
         "/oie_9113025Zn4zvO9R.jpg",
         "/WhatsApp Image 2025-12-08 at 23.02.30.jpeg",
         "/WhatsApp Image 2025-12-08 at 23.08.27 (1).jpeg",
