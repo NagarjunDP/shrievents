@@ -2074,29 +2074,35 @@ function Hero() {
       >
       {/* === BIG PROFESSIONAL BUSINESS NAME === */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="mb-8"
-        >
-          <h1 className="
-            text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl 
-            font-extrabold tracking-tight
-            bg-gradient-to-r from-pink-300 via-purple-300 to-pink-200 
-            bg-clip-text text-transparent
-            drop-shadow-2xl
-            leading-none
-          ">
-            Shri Events
-          </h1>
-          <p className="
-            text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl 
-            font-medium text-white/90 mt-3 tracking-wider
-            drop-shadow-lg
-          ">
-            – Decoration and Management –
-          </p>
-        </motion.div>
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1.4, ease: "easeOut" }}
+    className="mb-12"
+  >
+    {/* Main Name – Clean, Bold, Minimal */}
+    <h1 className="
+      text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl
+      font-black tracking-tight
+      text-white
+      drop-shadow-2xl
+      leading-none
+    ">
+      Shri Events
+    </h1>
+
+    {/* Subtext – Elegant divider style */}
+    <div className="flex items-center justify-center gap-6 mt-6">
+      <div className="h-px w-20 bg-gradient-to-r from-transparent to-white/60"></div>
+      <p className="
+        text-base xs:text-lg sm:text-xl md:text-2xl
+        font-medium tracking-widest text-white/90
+        uppercase
+      ">
+        Decoration and Management
+      </p>
+      <div className="h-px w-20 bg-gradient-to-l from-transparent to-white/60"></div>
+    </div>
+  </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
