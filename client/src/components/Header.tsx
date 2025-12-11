@@ -1117,16 +1117,7 @@ export default function Header() {
             : 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-pink-100'
         }`}
       >
-        {/* Subtle gradient only on Home when transparent */}
-        {/* /* {showTransparent && (
-          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-            <motion.div
-              animate={{ x: [-100, 100, -100] }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="absolute top-10 -left-40 w-96 h-96 bg-gradient-to-br from-blue-300 via-purple-300 to-pink-300 rounded-full blur-3xl"
-            />
-          </div>
-        )}  */ */}
+        
 
         <div className="flex items-center justify-between h-28 px-6 lg:px-12">
           {/* Logos */}
