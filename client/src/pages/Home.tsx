@@ -2159,10 +2159,10 @@ function Hero() {
   // BACKGROUND SLIDESHOW LOGIC
   // Replace these with the actual decoration photos from the client
   const backgroundImages = [
-    "/event_hero_image_violet_brighter.webp", 
+    "/wMrfOfKI8tCt.jpg", 
     // Add their decoration photos here, e.g.:
-    // "/decoration_1.jpg",
-    // "/decoration_2.jpg"
+    "/event14.webp",
+    "/event16.webp"
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
